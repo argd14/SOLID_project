@@ -5,11 +5,12 @@ import lombok.Getter;
 
 import java.util.Date;
 
-public class PatientEntity extends UserEntity {
+public class PatientEntity extends UserEntity implements Entity {
   @Getter private HomeAddress address;
   @Getter private String gender;
 
   public PatientEntity(
+      int id,
       String name,
       Date birthday,
       String phoneNumber,
@@ -17,7 +18,7 @@ public class PatientEntity extends UserEntity {
       String password,
       HomeAddress address,
       String gender) {
-    super(name, birthday, phoneNumber, email, password);
+    super(id, name, birthday, phoneNumber, email, password);
     this.address = address;
     this.gender = gender;
   }

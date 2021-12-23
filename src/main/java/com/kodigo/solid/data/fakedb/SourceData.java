@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface SourceData<T> {
-  List<T> readData(String pathToRead) throws IOException, ClassNotFoundException;
+  List<T> getDataFromTextFileDatabase() throws IOException, ClassNotFoundException;
 
-  void writeData(List dataToSave, String pathDestiny) throws IOException, ClassNotFoundException;
+  void saveDataToTextFileDatabase(List<T> dataToSave) throws IOException, ClassNotFoundException;
 }

@@ -11,13 +11,16 @@ public class DoctorEntity extends UserEntity implements Serializable {
   @Getter private MedicalSpecialties specialty;
 
   public DoctorEntity(
+      int id,
       String name,
       Date birthday,
       String phoneNumber,
       String email,
       String password,
+      boolean logged,
       MedicalSpecialties specialty) {
-    super(name, birthday, phoneNumber, email, password);
+    super(id, name, birthday, phoneNumber, email, password);
+    this.logged = logged;
     this.specialty = specialty;
   }
 

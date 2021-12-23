@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CoreDataManagement<T> implements SourceData {
+public class CoreDataManagement<T> {
 
-  @Override
-  public List<T> readData(String pathToRead) throws IOException, ClassNotFoundException {
+  protected List<T> readData(String pathToRead) throws IOException, ClassNotFoundException {
     FileInputStream fis = new FileInputStream(pathToRead);
     ObjectInputStream ois = new ObjectInputStream(fis);
     ois.close();
@@ -16,8 +15,7 @@ public class CoreDataManagement<T> implements SourceData {
     return (List<T>) ois.readObject();
   }
 
-  @Override
-  public void writeData(List dataToSave, String pathDestiny)
+  protected void writeData(List dataToSave, String pathDestiny)
       throws IOException, ClassNotFoundException {
     FileOutputStream fos = new FileOutputStream(pathDestiny);
     ObjectOutputStream oos = new ObjectOutputStream(fos);

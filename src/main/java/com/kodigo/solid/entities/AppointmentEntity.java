@@ -2,9 +2,10 @@ package com.kodigo.solid.entities;
 
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class AppointmentEntity {
+public class AppointmentEntity implements Serializable {
   private static final AtomicInteger count = new AtomicInteger(0);
   @Getter private int id;
   @Getter private DoctorEntity doctorInCharge;

@@ -6,6 +6,7 @@ import com.beust.jcommander.ParameterException;
 import com.kodigo.solid.commands.CommandMetadata;
 import com.kodigo.solid.commands.HelloCommand;
 import com.kodigo.solid.commands.LoginCommand;
+import com.kodigo.solid.commands.doctor.DoctorCommand;
 import com.kodigo.solid.data.repositories.DoctorRepository;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
 
@@ -29,11 +30,16 @@ public final class CommandsPool {
     LoginCommand logginCommand =
         new LoginCommand(CliCommands.LOGIN, new AuthServiceImplementation(new DoctorRepository()));
     HelloCommand helloCommand = new HelloCommand(CliCommands.HELLO);
+    DoctorCommand doctorCommand = new DoctorCommand(CliCommands.DOCTOR);
 
-    List<CommandMetadata> commands = Arrays.asList(logginCommand, helloCommand);
+    List<CommandMetadata> commands = Arrays.asList(logginCommand, helloCommand, doctorCommand);
 
     JCommander jcCli =
-        JCommander.newBuilder().addCommand(helloCommand).addCommand(logginCommand).build();
+        JCommander.newBuilder()
+            .addCommand(helloCommand)
+            .addCommand(logginCommand)
+            .addCommand(doctorCommand)
+            .build();
 
     try {
       jcCli.parse(args);

@@ -7,6 +7,7 @@ import java.io.IOException;
 public class Main {
 
   public static void main(String[] args) throws IOException, ClassNotFoundException {
-    CommandsPool.getInstance().run(args);
+    String[] argsmock = {"prueba", "--author", "Forrest Gump", "--comer", "--bailar", "--cita"};
+    CommandsPool.getInstance().run(argsmock);
   }
 }

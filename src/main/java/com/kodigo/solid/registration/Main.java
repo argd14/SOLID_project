@@ -114,6 +114,7 @@ public class Main {
                             out.println("Correo electrónico: " + b.getEmail());
                             out.println("------------------------------");
                             out.println();
+
                             out.print("¿Desea modificar el nombre del usuario? Y/N: ");
                             out.println();
                             String decisionName = input.nextLine();
@@ -124,53 +125,56 @@ public class Main {
                                 out.println();
                                 out.println("¡Los cambios han sido guardados!");
                                 out.println();
-                            } if (decisionName.equals("N")) {
-                                out.print("¿Desea modificar la fecha de nacimiento? Y/N: ");
-                                out.println();
-                                String decisionDateOfBirth = input.nextLine();
-                                if (decisionDateOfBirth.equals("Y")) {
-                                    out.println("Ingrese la nueva fecha de nacimiento: ");
-                                    String newDateOfBirth = input.nextLine();
-                                    b.setDateOfBirth(newDateOfBirth);
-                                    out.println();
-                                    out.println("¡Los cambios han sido guardados!");
-                                    out.println();
-                                } if (decisionDateOfBirth.equals("N")) {
-                                    out.print("¿Desea modificar el número de teléfono? Y/N: ");
-                                    out.println();
-                                    String decisionPhoneNumber = input.nextLine();
-                                    if (decisionPhoneNumber.equals("Y")) {
-                                        out.println("Ingrese el nuevo número telefónico: ");
-                                        out.println();
-                                        int newTelephoneNumber = Integer.parseInt(input.nextLine());
-                                        b.setPhoneNumber(newTelephoneNumber);
-                                        out.println("¡Cambios guardados!");
-                                        out.println();
-                                    } if (decisionPhoneNumber.equals("N")) {
-                                        out.print("¿Desea modificar el correo electrónico? Y/N: ");
-                                        out.println();
-                                        String decisionEmail = input.nextLine();
-                                        if (decisionEmail.equals("Y")) {
-                                            out.println("Ingrese el nuevo correo electrónico: ");
-                                            out.println();
-                                            String newEmail = input.nextLine();
-                                            b.setEmail(newEmail);
-                                            out.println("¡Cambios guardados!");
-                                            out.println();
-                                        } if (decisionPhoneNumber.equals("N")) {
-                                            out.println("------------------------------");
-                                            out.println("Favor revisar los cambios hechos al usuario: ");
-                                            out.println("Nombre: " + b.getName());
-                                            out.println("Fecha de nacimiento: " + b.getDateOfBirth());
-                                            out.println("Número de teléfono: " + b.getPhoneNumber());
-                                            out.println("Correo electrónico: " + b.getEmail());
-                                            out.println("------------------------------");
-                                            out.println();
-
-                                        }
-                                    }
-                                }
+                            } else if (decisionName.equals("N")) {
                             }
+
+                            out.print("¿Desea modificar la fecha de nacimiento? Y/N: ");
+                            out.println();
+                            String decisionDateOfBirth = input.nextLine();
+                            if (decisionDateOfBirth.equals("Y")) {
+                                out.println("Ingrese la nueva fecha de nacimiento: ");
+                                String newDateOfBirth = input.nextLine();
+                                b.setDateOfBirth(newDateOfBirth);
+                                out.println();
+                                out.println("¡Los cambios han sido guardados!");
+                                out.println();
+                            } else if (decisionDateOfBirth.equals("N")) {
+                            }
+
+                            out.print("¿Desea modificar el número de teléfono? Y/N: ");
+                            out.println();
+                            String decisionPhoneNumber = input.nextLine();
+                            if (decisionPhoneNumber.equals("Y")) {
+                                out.println("Ingrese el nuevo número telefónico: ");
+                                out.println();
+                                int newTelephoneNumber = Integer.parseInt(input.nextLine());
+                                b.setPhoneNumber(newTelephoneNumber);
+                                out.println("¡Cambios guardados!");
+                                out.println();
+                            } else if (decisionPhoneNumber.equals("N")) {
+                            }
+
+                            out.print("¿Desea modificar el correo electrónico? Y/N: ");
+                            out.println();
+                            String decisionEmail = input.nextLine();
+                            if (decisionEmail.equals("Y")) {
+                                out.println("Ingrese el nuevo correo electrónico: ");
+                                out.println();
+                                String newEmail = input.nextLine();
+                                b.setEmail(newEmail);
+                                out.println("¡Cambios guardados!");
+                                out.println();
+                            } else if (decisionPhoneNumber.equals("N")) {
+                            }
+
+                            out.println("---------------------------------------------");
+                            out.println("Favor revisar los cambios hechos al usuario: ");
+                            out.println("Nombre: " + b.getName());
+                            out.println("Fecha de nacimiento: " + b.getDateOfBirth());
+                            out.println("Número de teléfono: " + b.getPhoneNumber());
+                            out.println("Correo electrónico: " + b.getEmail());
+                            out.println("---------------------------------------------");
+                            out.println();
                         }
                     }
 
@@ -206,8 +210,6 @@ public class Main {
                     out.println("¡Opción Invalida!");
                     out.println();
             }
-
         }
-
     }
 }

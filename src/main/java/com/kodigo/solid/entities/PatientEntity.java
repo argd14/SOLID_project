@@ -10,14 +10,15 @@ public class PatientEntity extends UserEntity {
   @Getter private String gender;
 
   public PatientEntity(
+          String DUI,
       String name,
-      Date birthday,
+      String birthday,
       String phoneNumber,
       String email,
       String password,
       HomeAddress address,
       String gender) {
-    super(name, birthday, phoneNumber, email, password);
+    super(DUI, name, birthday, phoneNumber, email, password);
     this.address = address;
     this.gender = gender;
   }

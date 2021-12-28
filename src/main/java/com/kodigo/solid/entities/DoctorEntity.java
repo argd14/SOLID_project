@@ -1,28 +1,23 @@
 package com.kodigo.solid.entities;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.kodigo.solid.utils.constants.MedicalSpecialties;
-import lombok.Getter;
-
-import java.io.Serializable;
 import java.util.Date;
 
-public class DoctorEntity extends UserEntity implements Serializable {
-  public boolean logged = false;
-  @Getter private MedicalSpecialties specialty;
+@Data
+@NoArgsConstructor
+public class DoctorEntity extends UserEntity {
 
   public DoctorEntity(
-      String name,
-      Date birthday,
-      String phoneNumber,
-      String email,
-      String password,
-      MedicalSpecialties specialty) {
-    super(name, birthday, phoneNumber, email, password);
-    this.specialty = specialty;
-  }
+          String dui,
+          String name,
+          String birthday,
+          String phoneNumber,
+          String email,
+          String password
 
-  @Override
-  public String toString() {
-    return "DoctorEntity{" + "specialty=" + specialty + '}';
+  ) {
+    super(dui, name, birthday, phoneNumber, email, password);
+
   }
 }

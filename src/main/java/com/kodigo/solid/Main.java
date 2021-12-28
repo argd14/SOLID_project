@@ -1,9 +1,12 @@
 package com.kodigo.solid;
 
 import com.kodigo.solid.commands.RootCommand;
-import com.kodigo.solid.commands.admin.AdminCommand;
-import com.kodigo.solid.commands.admin.CreatePatientCommand;
-import com.kodigo.solid.commands.admin.ListPatientsCommand;
+import com.kodigo.solid.commands.admin.*;
+import com.kodigo.solid.commands.doctor.CreateConsultationCommand;
+import com.kodigo.solid.commands.doctor.DoctorCommandRoot;
+import com.kodigo.solid.commands.doctor.ListConsultsCommand;
+import com.kodigo.solid.commands.receptionist.CreateAppoimentCommand;
+import com.kodigo.solid.commands.receptionist.ReceptionistCommand;
 import picocli.CommandLine;
 
 public class Main {
@@ -15,7 +18,18 @@ public class Main {
                 "admin",
                 new CommandLine(new AdminCommand())
                     .addSubcommand(new CreatePatientCommand())
-                    .addSubcommand(new ListPatientsCommand()))
+                    .addSubcommand(new ListPatientsCommand())
+                    .addSubcommand(new CreateDoctorCommand())
+                    .addSubcommand(new CreateReceptionistCommand()))
+            .addSubcommand(
+                "recep",
+                new CommandLine(new ReceptionistCommand())
+                    .addSubcommand(new CreateAppoimentCommand()))
+            .addSubcommand(
+                "doctor",
+                new CommandLine(new DoctorCommandRoot())
+                    .addSubcommand(new CreateConsultationCommand())
+                    .addSubcommand(new ListConsultsCommand()))
             .execute(args);
   }
 }

@@ -22,6 +22,7 @@
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/data/fakedb/ConsultationSheetDataManagement.java
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/entities/ConsultationSheetEntity.java
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/utils/constants/MedicalSpecialties.java
+/home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/commands/doctor/CreateConsultationCommand.java
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/entities/PatientEntity.java
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/Main.java
 /home/eduardossj/Desktop/kodigo/SOLID_project/src/main/java/com/kodigo/solid/utils/usefullObjects/Prescription.java

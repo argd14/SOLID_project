@@ -3,12 +3,14 @@ package com.kodigo.solid.data.fakedb;
 import com.kodigo.solid.entities.DoctorEntity;
 import com.kodigo.solid.entities.Entity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class DoctorDataManagement extends CoreDataManagement<DoctorEntity>
     implements SourceData<DoctorEntity> {
-  String fileName = "doctorData.ser";
+  private String fileName =
+      new File("src/main/java/com/kodigo/solid/data/fakedb/doctorData.txt").getAbsolutePath();
 
   @Override
   public List<Entity<DoctorEntity>> getDataFromTextFileDatabase()

@@ -3,12 +3,14 @@ package com.kodigo.solid.data.fakedb;
 import com.kodigo.solid.entities.AppointmentEntity;
 import com.kodigo.solid.entities.Entity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class AppoimentDataManagement extends CoreDataManagement<AppointmentEntity>
     implements SourceData<AppointmentEntity> {
-  private String fileName = "appoimentData.ser";
+  private String fileName =
+      new File("src/main/java/com/kodigo/solid/data/fakedb/appoimentData.txt").getAbsolutePath();
 
   @Override
   public List<Entity<AppointmentEntity>> getDataFromTextFileDatabase()

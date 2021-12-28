@@ -6,16 +6,18 @@ import lombok.Getter;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ConsultationEntity implements Entity, Serializable {
 
   @Getter private int id;
-  @Getter private AppointmentEntity appointmentPatient;
+  @Getter private Entity<AppointmentEntity> appointmentPatient;
 
-  @Getter private Date consultationDate;
+  @Getter private LocalDate consultationDate;
 
-  public ConsultationEntity(AppointmentEntity appointmentPatient, Date consultationDate) throws IOException, ClassNotFoundException {
+  public ConsultationEntity(
+      Entity<AppointmentEntity> appointmentPatient, LocalDate consultationDate)
+      throws IOException, ClassNotFoundException {
     this.appointmentPatient = appointmentPatient;
     this.consultationDate = consultationDate;
     this.id = new ConsultationRepository(new ConsultationDataManagement()).count();

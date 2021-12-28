@@ -3,12 +3,14 @@ package com.kodigo.solid.data.fakedb;
 import com.kodigo.solid.entities.ConsultationEntity;
 import com.kodigo.solid.entities.Entity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class ConsultationDataManagement extends CoreDataManagement<ConsultationEntity>
     implements SourceData<ConsultationEntity> {
-  private String fileName = "consultsData.ser";
+  private String fileName =
+      new File("src/main/java/com/kodigo/solid/data/fakedb/consultsData.txt").getAbsolutePath();
 
   @Override
   public List<Entity<ConsultationEntity>> getDataFromTextFileDatabase()

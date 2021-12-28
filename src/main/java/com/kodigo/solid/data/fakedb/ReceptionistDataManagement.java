@@ -3,12 +3,14 @@ package com.kodigo.solid.data.fakedb;
 import com.kodigo.solid.entities.Entity;
 import com.kodigo.solid.entities.ReceptionistEntity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 public class ReceptionistDataManagement extends CoreDataManagement<ReceptionistEntity>
     implements SourceData<ReceptionistEntity> {
-  private String fileName = "receptionistData.ser";
+  private String fileName =
+      new File("src/main/java/com/kodigo/solid/data/fakedb/receptionistData.txt").getAbsolutePath();
 
   @Override
   public List<Entity<ReceptionistEntity>> getDataFromTextFileDatabase()

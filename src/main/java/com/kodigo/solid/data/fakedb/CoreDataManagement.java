@@ -16,19 +16,14 @@ public class CoreDataManagement<T> {
 
       FileInputStream fis = new FileInputStream(pathToRead);
       ObjectInputStream file = new ObjectInputStream(fis);
-
       List<Entity<T>> data = (List<Entity<T>>) file.readObject();
-
       file.close();
       fis.close();
       return data;
     } catch (EOFException e) {
-      System.out.println("CoreManagement / Read1");
-
       return null;
     } catch (IOException e) {
-      e.printStackTrace();
-      System.out.println("CoreManagement / Read2");
+
       return Collections.emptyList();
     }
   }
@@ -56,9 +51,9 @@ public class CoreDataManagement<T> {
       fos.close();
 
     } catch (IOException e) {
-      System.out.println("Primer Usuario");
+      e.printStackTrace();
     } catch (Exception e) {
-      System.out.println("writing");
+      e.printStackTrace();
     }
     return dataToSave;
   }

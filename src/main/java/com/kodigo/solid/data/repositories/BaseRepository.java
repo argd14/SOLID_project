@@ -76,4 +76,9 @@ public abstract class BaseRepository<T> implements Repository<T> {
     }
     return true;
   }
+
+  @Override
+  public int count() throws IOException, ClassNotFoundException {
+    return this.database.getElementsCount();
+  }
 }

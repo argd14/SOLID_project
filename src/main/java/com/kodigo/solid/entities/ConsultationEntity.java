@@ -1,21 +1,24 @@
 package com.kodigo.solid.entities;
 
+import com.kodigo.solid.data.fakedb.ConsultationDataManagement;
+import com.kodigo.solid.data.repositories.ConsultationRepository;
 import lombok.Getter;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class ConsultationEntity implements Entity {
-  private static final AtomicInteger count = new AtomicInteger(0);
+public class ConsultationEntity implements Entity, Serializable {
+
   @Getter private int id;
   @Getter private AppointmentEntity appointmentPatient;
 
   @Getter private Date consultationDate;
 
-  public ConsultationEntity(AppointmentEntity appointmentPatient, Date consultationDate) {
+  public ConsultationEntity(AppointmentEntity appointmentPatient, Date consultationDate) throws IOException, ClassNotFoundException {
     this.appointmentPatient = appointmentPatient;
     this.consultationDate = consultationDate;
-    this.id = count.incrementAndGet();
+    this.id = new ConsultationRepository(new ConsultationDataManagement()).count();
   }
 
   @Override

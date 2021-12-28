@@ -13,4 +13,6 @@ public interface Repository<T> {
   Entity<T> save(Entity<T> data);
 
   boolean deleteById(int id);
+
+  int count() throws IOException, ClassNotFoundException;
 }

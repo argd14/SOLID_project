@@ -35,15 +35,9 @@ public class CoreDataManagement<T> {
 
   protected void writeData(List<Entity<T>> dataToSave, String pathDestiny)
       throws ClassNotFoundException {
-    System.out.println(this.getNumberOfRecords(pathDestiny));
     if (this.getNumberOfRecords(pathDestiny) > 0) {
       var oldData = this.readData(pathDestiny);
 
-      System.out.println("Old > " + oldData);
-      System.out.println("New > " + dataToSave);
-      System.out.println(
-          "Union > "
-              + Stream.concat(oldData.stream(), dataToSave.stream()).collect(Collectors.toList()));
       this.write(
           Stream.concat(oldData.stream(), dataToSave.stream()).collect(Collectors.toList()),
           pathDestiny);

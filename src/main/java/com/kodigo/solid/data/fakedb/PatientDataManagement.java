@@ -25,7 +25,7 @@ public class PatientDataManagement extends CoreDataManagement<PatientEntity>
   }
 
   @Override
-  public int getElementsCount() throws IOException, ClassNotFoundException {
+  public int getElementsCount() throws ClassNotFoundException {
     return this.getNumberOfRecords(this.fileName);
   }
 }

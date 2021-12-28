@@ -22,7 +22,7 @@ public class CreatePatientCommand implements Callable<Integer> {
 
     PatientEntity patient =
         new PatientEntity(
-            1, "admin", new Date(), "9999-7777", "admin@gmail.com", "secretpass", "Masculino");
+            "admin", new Date(), "9999-7777", "admin@gmail.com", "secretpass", "Masculino");
     System.out.println("repo");
     this.patientEntityRepository.save(patient);
 

@@ -1,10 +1,20 @@
 package com.kodigo.solid.entities;
 
-import java.util.Date;
+import com.kodigo.solid.data.fakedb.ReceptionistDataManagement;
+import com.kodigo.solid.data.repositories.ReceptionistRepository;
+import lombok.Getter;
+import lombok.SneakyThrows;
 
-public class ReceptionistEntity extends UserEntity {
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class ReceptionistEntity extends UserEntity implements Entity, Serializable {
+  @Getter private int id;
+
+  @SneakyThrows
   public ReceptionistEntity(
-      String dui, String name, String birthday, String phoneNumber, String email, String password) {
-    super(dui, name, birthday, phoneNumber, email, password);
+      String name, LocalDate birthday, String phoneNumber, String email, String password) {
+    super(name, birthday, phoneNumber, email, password);
+    this.id = new ReceptionistRepository(new ReceptionistDataManagement()).count() + 1;
   }
 }

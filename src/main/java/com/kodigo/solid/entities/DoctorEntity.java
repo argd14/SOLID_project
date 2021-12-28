@@ -1,27 +1,22 @@
 package com.kodigo.solid.entities;
 
+import com.kodigo.solid.data.fakedb.DoctorDataManagement;
 import com.kodigo.solid.utils.constants.MedicalSpecialties;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class DoctorEntity extends UserEntity implements Serializable {
-  public boolean logged = false;
+public class DoctorEntity extends UserEntity implements Entity {
+  @Getter private int id;
   @Getter private MedicalSpecialties specialty;
 
+  @SneakyThrows
   public DoctorEntity(
-      int id,
-      String name,
-      Date birthday,
-      String phoneNumber,
-      String email,
-      String password,
-      boolean logged,
-      MedicalSpecialties specialty) {
-    super(id, name, birthday, phoneNumber, email, password);
-    this.logged = logged;
+      String name, Date birthday, String phoneNumber, String email, String password) {
+    super(name, birthday, phoneNumber, email, password);
     this.specialty = specialty;
+    this.id = new DoctorDataManagement().getDataFromTextFileDatabase().size() + 1;
   }
 
   @Override

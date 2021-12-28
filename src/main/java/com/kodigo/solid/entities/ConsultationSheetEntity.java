@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ConsultationSheetEntity {
+public class ConsultationSheetEntity implements Entity {
   private static final AtomicInteger count = new AtomicInteger(0);
   @Getter private int id;
   @Getter private ConsultationEntity consultation;

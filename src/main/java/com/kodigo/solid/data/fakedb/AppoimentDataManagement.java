@@ -1,20 +1,29 @@
 package com.kodigo.solid.data.fakedb;
 
 import com.kodigo.solid.entities.AppointmentEntity;
+import com.kodigo.solid.entities.Entity;
 
 import java.io.IOException;
 import java.util.List;
 
-public class AppoimentDataManagement extends CoreDataManagement<AppointmentEntity> {
+public class AppoimentDataManagement extends CoreDataManagement<AppointmentEntity>
+    implements SourceData<AppointmentEntity> {
   private String fileName = "appoimentData.ser";
 
-  public List<AppointmentEntity> getDataFromTextFileDatabase()
+  @Override
+  public List<Entity<AppointmentEntity>> getDataFromTextFileDatabase()
       throws IOException, ClassNotFoundException {
     return this.readData(this.fileName);
   }
 
-  public void saveDataToTextFileDatabase(List<AppointmentEntity> dataToSave)
+  @Override
+  public void saveDataToTextFileDatabase(List<Entity<AppointmentEntity>> dataToSave)
       throws IOException, ClassNotFoundException {
     this.writeData(dataToSave, this.fileName);
+  }
+
+  @Override
+  public int getElementsCount() throws IOException, ClassNotFoundException {
+    return this.getNumberOfRecords(this.fileName);
   }
 }

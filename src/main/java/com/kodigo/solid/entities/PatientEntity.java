@@ -1,12 +1,12 @@
 package com.kodigo.solid.entities;
 
-import com.kodigo.solid.utils.usefullObjects.HomeAddress;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PatientEntity extends UserEntity implements Entity {
-  @Getter private HomeAddress address;
+public class PatientEntity extends UserEntity implements Entity, Serializable {
+  @Getter private int id;
   @Getter private String gender;
 
   public PatientEntity(
@@ -16,15 +16,15 @@ public class PatientEntity extends UserEntity implements Entity {
       String phoneNumber,
       String email,
       String password,
-      HomeAddress address,
       String gender) {
-    super(id, name, birthday, phoneNumber, email, password);
-    this.address = address;
+    super(name, birthday, phoneNumber, email, password);
+    this.id = id;
+
     this.gender = gender;
   }
 
   @Override
   public String toString() {
-    return "PatientEntity{" + "address=" + address + ", gender='" + gender + '\'' + '}';
+    return super.toString() + "PatientEntity{" + "id=" + id + ", gender='" + gender + '\'' + '}';
   }
 }

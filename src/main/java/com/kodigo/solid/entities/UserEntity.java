@@ -11,15 +11,25 @@ public class UserEntity implements Serializable {
   @Getter private LocalDate birthday;
   @Getter private String phoneNumber;
   @Getter private String email;
-  @Getter private String password;
+  @Getter public String password;
+  public int id;
+  public String Username;
+  public int Role;
 
   public UserEntity(
-      String name, LocalDate birthday, String phoneNumber, String email, String password) {
+          int id, String name, LocalDate birthday, String phoneNumber, String email,  String username, String password, int role) {
     this.name = name;
     this.birthday = birthday;
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.password = password;
+    this.id = id;
+    this.Username = username;
+    this.Role = role;
+  }
+
+  public UserEntity(){
+
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.kodigo.solid.views;
+package main.java.com.kodigo.solid.views;
 
 import com.kodigo.solid.commands.addDoctorEntity;
 import com.kodigo.solid.data.fakedb.DataPDF;

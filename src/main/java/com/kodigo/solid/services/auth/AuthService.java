@@ -1,7 +1,7 @@
-package com.kodigo.solid.services.auth;
+package main.java.com.kodigo.solid.services.auth;
 
 public interface AuthService {
-  void login();
+  void userLogin();
 
   void logout();
 

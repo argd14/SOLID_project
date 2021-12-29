@@ -1,35 +1,16 @@
 package com.kodigo.solid;
 
-import com.kodigo.solid.commands.RootCommand;
-import com.kodigo.solid.commands.admin.*;
-import com.kodigo.solid.commands.doctor.CreateConsultationCommand;
-import com.kodigo.solid.commands.doctor.DoctorCommandRoot;
-import com.kodigo.solid.commands.doctor.ListConsultsCommand;
-import com.kodigo.solid.commands.receptionist.CreateAppoimentCommand;
-import com.kodigo.solid.commands.receptionist.ReceptionistCommand;
-import picocli.CommandLine;
+import com.kodigo.solid.utils.Menu;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Main {
 
   public static void main(String[] args) {
-    int exitCode =
-        new CommandLine(new RootCommand())
-            .addSubcommand(
-                "admin",
-                new CommandLine(new AdminCommand())
-                    .addSubcommand(new CreatePatientCommand())
-                    .addSubcommand(new ListPatientsCommand())
-                    .addSubcommand(new CreateDoctorCommand())
-                    .addSubcommand(new CreateReceptionistCommand()))
-            .addSubcommand(
-                "recep",
-                new CommandLine(new ReceptionistCommand())
-                    .addSubcommand(new CreateAppoimentCommand()))
-            .addSubcommand(
-                "doctor",
-                new CommandLine(new DoctorCommandRoot())
-                    .addSubcommand(new CreateConsultationCommand())
-                    .addSubcommand(new ListConsultsCommand()))
-            .execute(args);
+    List lista = Stream.of("opcionA", "opcionB", "opcionC").toList();
+    var menu = new Menu("AdminMenu", lista);
+
+    int choice = menu.showMenu();
   }
 }

@@ -1,11 +1,11 @@
-package main.java.com.kodigo.solid.commands;
-import main.java.com.kodigo.solid.entities.PaymentEntity;
+package com.kodigo.solid.commands;
+import com.kodigo.solid.entities.PaymentEntity;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PaymentManagerEntity {
+public class PaymentEntityController {
     public List<PaymentEntity> payments = new ArrayList<>();
 
     public void listPayments(){

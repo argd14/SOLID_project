@@ -14,4 +14,6 @@ public class LoginEntity extends UserEntity {
 
     }
 
+    public void userLogin() {
+    }
 }

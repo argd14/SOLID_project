@@ -1,10 +1,10 @@
-package main.java.com.kodigo.solid.entities;
+package com.kodigo.solid.entities;
 
 import java.time.LocalDateTime;
 
 public class PaymentEntity {
 
-    int patientId;
+    public int patientId;
     LocalDateTime datetime;
     String concept;
     double amount;

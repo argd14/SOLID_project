@@ -1,6 +1,7 @@
-package main.java.com.kodigo.solid.commands.patient;
+package com.kodigo.solid.commands.patient;
 
-import main.java.com.kodigo.solid.entities.AppointmentEntity;
+import com.kodigo.solid.entities.AppointmentEntity;
+import com.kodigo.solid.entities.AppointmentEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

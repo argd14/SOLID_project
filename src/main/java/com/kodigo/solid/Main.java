@@ -1,4 +1,4 @@
-package main.java.com.kodigo.solid;
+package com.kodigo.solid;
 
 //import com.kodigo.solid.commands.RootCommand;
 //import com.kodigo.solid.commands.admin.*;
@@ -9,7 +9,7 @@ package main.java.com.kodigo.solid;
 //import com.kodigo.solid.commands.receptionist.ReceptionistCommand;
 //import picocli.CommandLine;
 
-import main.java.com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.services.auth.AuthServiceImplementation;
 
 public class Main {
 

@@ -1,27 +1,22 @@
 package com.kodigo.solid.entities;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.kodigo.solid.data.fakedb.DoctorDataManagement;
-import com.kodigo.solid.data.repositories.DoctorRepository;
-import lombok.Getter;
-import lombok.SneakyThrows;
-
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
-public class DoctorEntity extends UserEntity implements Entity, Serializable {
-  @Getter private int id;
-  //@Getter private MedicalSpecialties specialty;
+@Data
 
-  @SneakyThrows
-  public DoctorEntity(
-      String name, LocalDate birthday, String phoneNumber, String email, String password) {
-    super(name, birthday, phoneNumber, email, password);
+public class DoctorEntity extends UserEntity {
 
-    this.id = new DoctorRepository(new DoctorDataManagement()).count();
-  }
+    public DoctorEntity() {
+    }
 
-  @Override
-  public String toString() {
-    return "DoctorEntity{" + "specialty="  + '}';
-  }
+    public DoctorEntity(int id, String username, String name, LocalDate birthday, String phoneNumber, String email, String password, int role) {
+        super(id, username, name, birthday, phoneNumber, email, password, role);
+    }
+
+    public DoctorEntity(String name, LocalDate parse, String phone, String email, String password) {
+    }
 }

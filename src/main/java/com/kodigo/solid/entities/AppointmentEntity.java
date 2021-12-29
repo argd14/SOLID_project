@@ -1,4 +1,4 @@
-package main.java.com.kodigo.solid.entities;
+package com.kodigo.solid.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -7,8 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class AppoimentDataManagement extends CoreDataManagement<AppointmentEntity>
-    implements SourceData<AppointmentEntity> {
+public class AppoimentDataManagement extends CoreDataManagement<AppointmentEntity> implements SourceData<AppointmentEntity> {
   private String fileName =
       new File("src/main/java/com/kodigo/solid/data/fakedb/appoimentData.txt").getAbsolutePath();
 

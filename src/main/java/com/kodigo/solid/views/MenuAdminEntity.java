@@ -1,8 +1,6 @@
 package com.kodigo.solid.views;
 
 import com.kodigo.solid.commands.AdminEntityController;
-import com.kodigo.solid.commands.AdminEntityController;
-import com.kodigo.solid.data.fakedb.DataPDF;
 import com.kodigo.solid.entities.UserEntity;
 
 import java.util.Scanner;

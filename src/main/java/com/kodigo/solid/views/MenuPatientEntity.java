@@ -3,12 +3,15 @@ package com.kodigo.solid.views;
 import com.kodigo.solid.commands.patient.AppointmentBookEntity;
 import com.kodigo.solid.commands.PaymentEntityController;
 import com.kodigo.solid.entities.*;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
 
-public class MenuPatientEntity implements main.java.com.kodigo.solid.views.IMenu {
+@NoArgsConstructor
+public class MenuPatientEntity {
     private String option, option2;
     main.java.com.kodigo.solid.entities.LoginEntity login = new main.java.com.kodigo.solid.entities.LoginEntity();
     private int id;
@@ -21,7 +24,7 @@ public class MenuPatientEntity implements main.java.com.kodigo.solid.views.IMenu
     }
 
 
-    public void Print() {
+    public void viewMenuPatient() {
 
         System.out.println("User Options\n********************");
         System.out.println("1. Gestionar Citas\n2. Pagos\n3. Historial Medico\n4. Agenda\n5. Salir");
@@ -108,7 +111,7 @@ public class MenuPatientEntity implements main.java.com.kodigo.solid.views.IMenu
                     default:
                         break;
                 }
-                Print();
+              viewMenuPatient();
             }
         }
 

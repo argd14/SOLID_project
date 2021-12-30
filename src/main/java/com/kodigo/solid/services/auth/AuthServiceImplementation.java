@@ -1,38 +1,27 @@
 package com.kodigo.solid.services.auth;
-
-import com.kodigo.solid.data.fakedb.AdminDataManagement;
-import com.kodigo.solid.data.fakedb.DoctorDataManagement;
-import com.kodigo.solid.data.fakedb.PatientDataManagement;
-import com.kodigo.solid.data.repositories.AdminRepository;
-import com.kodigo.solid.data.repositories.DoctorRepository;
-import com.kodigo.solid.data.repositories.PatientRepository;
 import com.kodigo.solid.entities.*;
+import com.kodigo.solid.views.MenuDoctorEntity;
 import com.kodigo.solid.views.MenuPatientEntity;
-
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 //import com.kodigo.solid.entities.LoginEntity;
 
 public class AuthServiceImplementation implements main.java.com.kodigo.solid.services.auth.AuthService {
 
     main.java.com.kodigo.solid.entities.LoginEntity loginEntity = new main.java.com.kodigo.solid.entities.LoginEntity();
-    UserEntity user = new UserEntity();
-    String Username;
-    String Password;
+    ArrayList<UserEntity> users = new ArrayList<>();
+    MenuDoctorEntity doctorMenu = new MenuDoctorEntity();
+    MenuPatientEntity patientMenu = new MenuPatientEntity();
+    com.kodigo.solid.views.MenuAdminEntity adminMenu = new com.kodigo.solid.views.MenuAdminEntity();
 
-    List<UserEntity> users = loginEntity.users;
-
-    private DoctorRepository doctorRepository;
-    private PatientRepository patientRepository;
-    private AdminRepository adminRepository;
+    private String Username;
+    private String Password;
     boolean Verified = false;
-   com.kodigo.solid.views.MenuAdminEntity adminMenu = new com.kodigo.solid.views.MenuAdminEntity();
+    private int user;
+
 
     public AuthServiceImplementation() {
-        this.doctorRepository = new DoctorRepository(new DoctorDataManagement());
-        this.patientRepository = new PatientRepository(new PatientDataManagement());
-        this.adminRepository = new AdminRepository(new AdminDataManagement());
 
     }
 
@@ -46,50 +35,49 @@ public class AuthServiceImplementation implements main.java.com.kodigo.solid.ser
         System.out.println("Password");
         Password = sc.nextLine();
 
-        for (int i = 1; i <= users.size(); i++) {
-            System.out.println(users.get(i).getUsername());
+        for (int i = 0; i < users.size(); i++) {
 
-            if (Username != null) {
+            if (Username.equals(this.users.get(i).getUsername()) && Password.equals(this.users.get(i).getPassword())) {
                 Verified = true;
-                user = users.get(i);
-                //
-                break;
+                user = users.get(i).getRole();
+
+                System.out.println("\nVerificando usuario...");
+                if (Verified == true) {
+                    System.out.println("\nUsuario verificado");
+
+                    System.out.println(user);
+                    if (user == 1) {
+                        //Rol Administrador: Muestra MenuAdmin
+                        adminMenu.viewMenuAdmin();
+
+                    } else if (user == 2) {
+
+                        //Rol Doctor Muestra MenuDcctor
+
+                        doctorMenu.viewMenuDoctor();
+
+
+                    } else if (user == 3){
+                        //Rol Paciente Muestra menuPaciente
+                        patientMenu.viewMenuPatient();
+
+                    }
+
+                } else {
+                    System.out.println("\nUsuario o contraseña no validos.\n 1. Intentelo de nuevo");
+                    String option = sc.next();
+                    if (option.equals("1")) {
+                        userLogin();
+                    }
+
+                }
+
             } else {
                 Verified = false;
             }
         }
 
-        System.out.println("\nVerificando usuario...");
-        if (Verified == true) {
-            System.out.println("\nUsuario verificado");
-            System.out.println(user.getRole());
-            System.out.println(users);
 
-            if (user.getRole() == 1) {
-
-                //Rol Administrador: Muestra MenuAdmin
-                adminMenu.viewMenuAdmin();
-
-            } else if (user.getRole() == 2) {
-
-                //Rol Doctor Muestra MenuDcctor
-
-            } else {
-                //Rol Paciente Muestra menuPaciente
-
-               // MenuPatientEntity userMenu = new MenuPatientEntity(user.getId());
-              //  userMenu.Print();
-                adminMenu.viewMenuAdmin();
-            }
-
-        } else {
-            System.out.println("\nUsuario o contraseña no validos.\n 1. Intentelo de nuevo");
-            String option = sc.next();
-            if (option.equals("1")) {
-                userLogin();
-            }
-
-        }
     }
 
     public void userDatabase() {
@@ -97,7 +85,7 @@ public class AuthServiceImplementation implements main.java.com.kodigo.solid.ser
         users.add(admin);
         UserEntity patient1 = new UserEntity(2, "Roxy", "roxy", LocalDate.parse("1998-05-11"), "77895641", "roxy@gmail.com", "1234", 3);
         users.add(patient1);
-        UserEntity doctor = new UserEntity(3, "Dr. Rivas", "rivas", LocalDate.parse("1973-10-08"), "77895641", "doctorrivas@gmail.com", "1234", 2);
+        UserEntity doctor = new UserEntity(3, "Rivas", "rivas", LocalDate.parse("1973-10-08"), "77895641", "doctorrivas@gmail.com", "1234", 2);
         users.add(doctor);
     }
 
@@ -112,7 +100,7 @@ public class AuthServiceImplementation implements main.java.com.kodigo.solid.ser
 
         List<Entity<DoctorEntity>> ListDoctorEntity = this.doctorRepository.findAll();
         List<Entity<PatientEntity>> ListPatientEntity = this.patientRepository.findAll();
-        List<Entity<Admin>> ListAdminEntity = this.adminRepository.findAll();
+        List<Entity<AdminEntity>> ListAdminEntity = this.adminRepository.findAll();
 
         List<Entity<? extends UserEntity>> allUser = Stream.concat(ListDoctorEntity.stream(), Stream.concat(ListAdminEntity.stream(), ListPatientEntity.stream())).toList();
         int option;

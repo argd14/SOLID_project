@@ -32,16 +32,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", Username='" + Username + '\'' +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", Role=" + Role +
-                '}';
+        return "\nUsuario: "+ "nombre: " + name + '\'' + " fecha de nacimiento: " + birthday + " numero de telefono: " + phoneNumber + '\'' + " correo electronico: " + email ;
     }
 }
 

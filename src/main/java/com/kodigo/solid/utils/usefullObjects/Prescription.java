@@ -1,7 +1,7 @@
 package com.kodigo.solid.utils.usefullObjects;
 
-import com.kodigo.solid.entities.DoctorEntity;
-import com.kodigo.solid.entities.PatientEntity;
+import com.kodigo.solid.entitiesv1.DoctorEntity;
+import com.kodigo.solid.entitiesv1.PatientEntity;
 import lombok.Getter;
 
 import java.util.Date;

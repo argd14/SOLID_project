@@ -1,10 +1,13 @@
 package com.kodigo.solid.entities;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class PaymentEntity {
-
-    public int patientId;
+    int id;
+    int patientId;
     LocalDateTime datetime;
     String concept;
     double amount;

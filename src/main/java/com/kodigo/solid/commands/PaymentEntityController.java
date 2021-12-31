@@ -8,6 +8,10 @@ import java.util.List;
 public class PaymentEntityController {
     public List<PaymentEntity> payments = new ArrayList<>();
 
+    public void printPayment(PaymentEntity payment){
+        System.out.println(payment.toString());
+    }
+
     public void listPayments(){
         payments.sort(Comparator.comparing(PaymentEntity::getDatetime));
         for (PaymentEntity p : payments)
@@ -23,7 +27,7 @@ public class PaymentEntityController {
         payments.sort(Comparator.comparing(PaymentEntity::getDatetime));
         for (PaymentEntity p : payments)
         {
-            if (p != null && p.patientId == id )
+            if (p != null && p.getPatientId() == id )
             {
                 System.out.println(p.toString());
             }
@@ -33,6 +37,7 @@ public class PaymentEntityController {
     public void add(PaymentEntity p)
     {
         payments.add(p);
+        p.setId(payments.indexOf(p) + 1);
         System.out.println("Added payment " + p + "\n");
     }
 }

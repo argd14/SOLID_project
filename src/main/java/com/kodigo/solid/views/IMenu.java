@@ -1,4 +1,4 @@
-package main.java.com.kodigo.solid.views;
+package com.kodigo.solid.views;
 
 public interface IMenu {
     void Print();

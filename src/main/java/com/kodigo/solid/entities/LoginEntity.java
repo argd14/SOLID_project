@@ -1,5 +1,4 @@
-package main.java.com.kodigo.solid.entities;
-import com.kodigo.solid.entities.UserEntity;
+package com.kodigo.solid.entities;
 import java.util.ArrayList;
 import java.util.List;
 

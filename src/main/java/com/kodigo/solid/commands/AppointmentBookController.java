@@ -1,15 +1,13 @@
-package com.kodigo.solid.commands.patient;
+package com.kodigo.solid.commands;
 
-import com.kodigo.solid.entities.AppointmentEntity;
-import com.kodigo.solid.entities.AppointmentEntity;
-
+import com.kodigo.solid.entities.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class AppointmentBookEntity {
+public class AppointmentBookController {
     public List<AppointmentEntity> Appointments = new ArrayList<>();
 
     public void listAppointments(){
@@ -27,7 +25,7 @@ public class AppointmentBookEntity {
         Appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
         for (AppointmentEntity a : Appointments)
         {
-            if (a != null && a.date.equals(date))
+            if (a != null && a.getDate().equals(date))
             {
                 System.out.println("Citas de Hoy");
                 System.out.println(a.toString());
@@ -43,7 +41,7 @@ public class AppointmentBookEntity {
         Appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
         for (AppointmentEntity a : Appointments)
         {
-            if (a != null && a.patientId == id )
+            if (a != null && a.getPatientId() == id )
             {
                 System.out.println(a.toString());
             }
@@ -65,15 +63,16 @@ public class AppointmentBookEntity {
     public void add(AppointmentEntity a)
     {
         Appointments.add(a);
+        a.setId(Appointments.indexOf(a) + 1);
         System.out.println("Added appointment " + a + "\n");
     }
 
     public void update(AppointmentEntity a, LocalDate date, LocalTime time){
         if (Appointments.contains(a))
         {
-            a.date = date;
-            a.time = time;
-            a.datetime = date.atTime(time);
+            a.setDate(date);
+            a.setTime(time);
+            a.setDatetime(date.atTime(time));
             System.out.println("Updated appointment " + a.toString());
         }
         else

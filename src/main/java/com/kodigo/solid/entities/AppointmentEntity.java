@@ -1,24 +1,20 @@
 package com.kodigo.solid.entities;
 
+import lombok.Data;
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
+@Data
 public class AppointmentEntity implements Serializable {
-  //@Getter private int id;
-  //@Getter private Entity<DoctorEntity> doctorInCharge;
-  //@Getter private Entity<PatientEntity> patient;
-  //@Getter
-   public int patientId;
-  //@Getter
-  public LocalDate date;
-  //@Getter
-   public  LocalTime time;
-  //@Getter
-  public LocalDateTime datetime;
-
+  private int id;
+  private int patientId;
+  private LocalDate date;
+  private LocalTime time;
+  private LocalDateTime datetime;
 
 //  public AppointmentEntity(Entity<DoctorEntity> doctorInCharge, Entity<PatientEntity> patient)
 //      throws IOException, ClassNotFoundException {
@@ -35,21 +31,16 @@ public class AppointmentEntity implements Serializable {
     this.datetime = date.atTime(time);
   }
 
-  public String getDate()
+  public String getDateString()
   {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
     return datetime.format(formatter);
   }
 
-  public LocalDateTime getDatetime()
-  {
-    return datetime;
-  }
-
   @Override
   public String toString()
   {
-    return ("Paciente: " + this.patientId + ".\n" + "Fecha: " + this.getDate());
+    return ("Cita ID: " + this.id + ".\n"  + "Paciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
   }
 
 }

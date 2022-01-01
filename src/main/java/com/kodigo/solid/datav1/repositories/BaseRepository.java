@@ -48,17 +48,6 @@ public abstract class BaseRepository<T extends BaseEntity> implements Repository
   }
 
   @Override
-  public List<T> save(List<T> data) {
-    try {
-      this.database.saveDataToTextFileDatabase(data);
-      return data;
-    } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-    }
-    return data;
-  }
-
-  @Override
   public boolean deleteById(int id) {
     T data = null;
     try {

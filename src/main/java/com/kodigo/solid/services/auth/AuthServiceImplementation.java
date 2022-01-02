@@ -13,6 +13,7 @@ import com.kodigo.solid.views.MenuAdminEntity;
 import com.kodigo.solid.views.MenuDoctorEntity;
 import com.kodigo.solid.views.MenuPatientEntity;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class AuthServiceImplementation
     }
 
     @Override
-    public void userLogin() {
+    public void userLogin() throws IOException {
         userDatabase();
         Scanner sc = new Scanner(System.in);
         System.out.println("Login");

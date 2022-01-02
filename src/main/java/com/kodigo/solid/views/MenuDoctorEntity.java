@@ -4,7 +4,9 @@ import com.kodigo.solid.commands.AppointmentBookController;
 import com.kodigo.solid.commands.DoctorEntityController;
 import com.kodigo.solid.entities.LoginEntity;
 import com.kodigo.solid.services.auth.ConsultationService;
+import com.kodigo.solid.services.auth.PrintConsultationsService;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -17,7 +19,7 @@ public class MenuDoctorEntity {
     private int option, option3;
     private int option2;
 
-    public void viewMenuDoctor() {
+    public void viewMenuDoctor() throws IOException {
         while (!exit) {
 
             System.out.println("-----MENU DOCTOR----- ");
@@ -40,6 +42,7 @@ public class MenuDoctorEntity {
                 case 1:
                     // Gestion Historial
                     ConsultationService consultationService = new ConsultationService();
+                    PrintConsultationsService printConsultationsService = new PrintConsultationsService();
                     while (!exit) {
                         System.out.println("==============================");
                         System.out.println(
@@ -57,6 +60,7 @@ public class MenuDoctorEntity {
                                 consultationService.showAll();
                                 break;
                             case 3:
+                                printConsultationsService.createPdf();
                                 break;
                             default:
                                 System.out.println("Opcion invalida");

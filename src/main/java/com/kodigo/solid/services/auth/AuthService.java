@@ -1,9 +1,11 @@
 package main.java.com.kodigo.solid.services.auth;
 
+import java.io.IOException;
+
 public interface AuthService {
-  void userLogin();
+    void userLogin() throws IOException;
 
-  void logout();
+    void logout();
 
-  void signUp();
+    void signUp();
 }

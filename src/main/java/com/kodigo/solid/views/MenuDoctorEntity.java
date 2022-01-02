@@ -54,6 +54,7 @@ public class MenuDoctorEntity {
                                 consultationService.createConsultation();
                                 break;
                             case 2:
+                                consultationService.showAll();
                                 break;
                             case 3:
                                 break;

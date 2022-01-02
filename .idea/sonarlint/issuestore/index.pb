@@ -4,3 +4,25 @@
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 Z
 *.idea/libraries/coveo_fmt_maven_plugin.xml,d/c/dce1039994069378e7fd642531c36705b78da9ec
+t
+Dsrc/main/java/com/kodigo/solid/utils/usefullObjects/HomeAddress.java,c\6\c68de06a2ab3ff715c4374bd558394bd50983aea
+v
+Fsrc/main/java/com/kodigo/solid/utils/constants/MedicalSpecialties.java,5\0\50af1550b093b9e49eeead33d9794f0dcb2026a8
+q
+Asrc/main/java/com/kodigo/solid/utils/usefullObjects/Medicine.java,7\1\71e31ac8e7fa3b39421905c57b05e8fe10dec9d7
+u
+Esrc/main/java/com/kodigo/solid/utils/usefullObjects/Prescription.java,a\a\aa0077b1ef548b8390290e1e090e118674182235
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+>
+DataDoctor.txt,c\f\cffab9979ec3d4c83c5874b94f0ef3a8b66a7dde
+m
+=src/main/java/com/kodigo/solid/services/auth/AuthService.java,4\5\45a9ddbb06341fccd639e5fcd7dc678aa483678e
+v
+Fsrc/main/java/com/kodigo/solid/data/repositories/DoctorRepository.java,d\9\d92776b5cc7a0c5dad5a7409497103d05fdd2819
+w
+Gsrc/main/java/com/kodigo/solid/data/repositories/PatientRepository.java,b\0\b0eeae3409e55f7ef263c15a4e7d7ad9724977be
+h
+8src/main/java/com/kodigo/solid/data/fakedb/adminData.txt,e\e\ee6ea94d1657ddae5d99714a5cff6b4ac04100e9

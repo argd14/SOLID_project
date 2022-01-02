@@ -13,11 +13,11 @@ public class ConsultationService implements IConsultationService {
     @Override
     public void showAll() {
 
-        System.out.println("Citas disponibles");
-        Scanner input = new Scanner(System.in);
-        var availableAppoiments = this.database.getAppoiments();
-        for (AppointmentEntity appointment : availableAppoiments) {
-            System.out.println("Cita ID: " + appointment.getId() + "FECHA: " + appointment.getDate() + " HORA: " + appointment.getTime());
+        System.out.println("Consultas disponibles");
+
+        var availableConsultations = this.database.newConsultations;
+        for (ConsulationEntity consulation : availableConsultations) {
+            System.out.println("Consulta ID: " + consulation.getId() + "FECHA: " + consulation.getConsultationDate());
         }
     }
 
@@ -36,7 +36,7 @@ public class ConsultationService implements IConsultationService {
         String date = input.nextLine();
 
         var consultation = new ConsulationEntity(1, availableAppoiments.get(appoimentId), LocalDate.parse(date));
-
+        this.database.newConsultations.add(consultation);
         System.out.println("Consulta Registrada.");
     }
 }

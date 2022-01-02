@@ -1,14 +1,18 @@
 package com.kodigo.solid.database;
 
 import com.kodigo.solid.entities.AppointmentEntity;
+import com.kodigo.solid.entities.ConsulationEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Database {
+    public List<ConsulationEntity> newConsultations = new ArrayList<>();
+
     public List<AppointmentEntity> getAppoiments() {
         var appoiment1 = new AppointmentEntity(1, LocalDate.now(), LocalTime.now());
         var appoiment2 = new AppointmentEntity(2, LocalDate.now(), LocalTime.now());

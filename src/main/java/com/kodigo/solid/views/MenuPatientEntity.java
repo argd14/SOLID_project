@@ -18,14 +18,16 @@ import java.util.Scanner;
 public class MenuPatientEntity {
     private int option, option2;
     private int idCita, idAuth;
+    private String userAuth;
     Scanner sc = new Scanner(System.in);
     AppointmentBookController appointmentBook = new AppointmentBookController();
     PaymentEntityController paymentManager = new PaymentEntityController();
     AppointmentEntity appointment;
     private boolean exit = false;
 
-    public void idAuth(int id) {
+    public void idAuth(int id, String nombre) {
         this.idAuth = id;
+        this.userAuth =nombre;
     }
 
     public void viewMenuPatient() {
@@ -49,7 +51,7 @@ public class MenuPatientEntity {
                     System.out.println("==============================");
                     System.out.println("-------GESTION CITAS-------");
                     System.out.println("==============================");
-                    System.out.println("1. Nueva Cita\n2.Actualizar Cita\n3.Cancelar Cita\n4.Regresar");
+                    System.out.println("1. Nueva Cita\n2.Actualizar Cita\n3.Cancelar Cita\n0.Regresar");
                     System.out.print("Ingrese la opción que desea: ");
                     option2 = sc.nextInt();
                     switch (option2) {
@@ -71,7 +73,7 @@ public class MenuPatientEntity {
                             appointmentBook.deleteAppointmentEntity(date);
                             System.out.println("Cita eliminada exitosamente");
                             break;
-                        case 4:
+                        case 0:
                             viewMenuPatient();
                             break;
                     }
@@ -81,14 +83,14 @@ public class MenuPatientEntity {
                     System.out.println("==============================");
                     System.out.println("-------GESTION PAGOS-------");
                     System.out.println("==============================");
-                    System.out.println("1. Historial de Pagos\n2.Imprimir factura");
+                    System.out.println("1. Historial de Pagos\n2.Imprimir factura\n0.Regresar");
                     System.out.println("Ingrese una opcion");
                     option2 = sc.nextInt();
                     switch (option2) {
                         case 1:
                             //historial de pagos
                             System.out.println("*******************-");
-                            paymentManager.listPatientPayments(this.idAuth);
+                            paymentManager.listPatientPayments(this.idAuth,this.userAuth);
                             System.out.println("-----------------------");
                             break;
                         case 2:
@@ -97,10 +99,9 @@ public class MenuPatientEntity {
                             System.out.println("Ingrese Pago ID");
                             int paymentId = sc.nextInt();
                             paymentManager.printPayment(paymentId);
-
                             break;
-
-                        default:
+                        case 0:
+                            exit = true;
                             break;
                     }
 
@@ -111,10 +112,10 @@ public class MenuPatientEntity {
                     break;
 
                 case 4:
-                    appointmentBook.listPatientAppointments(this.idAuth);
+                    appointmentBook.listPatientAppointments(this.idAuth,this.userAuth);
                     break;
 
-                case 5:
+                case 0:
                     exit = true;
                     break;
 

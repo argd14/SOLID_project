@@ -85,13 +85,21 @@ public class AppointmentBookController {
         }
     }
 
-    public void listPatientAppointments(int id) {
-        appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
-        for (AppointmentEntity a : appointments) {
-            if (a != null && a.getPatientId() == id) {
-                System.out.println(a);
+    public void listPatientAppointments(int id, String name) {
+       // appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
+        System.out.println(id);
+        System.out.println(name);
+        System.out.println(appointments);
+        for(int i = 1; i <= appointments.size(); i++) {
+            System.out.println(appointments);
+            if(id == appointments.get(i).getPatientId()){
+
+                System.out.println("\nNombre cliente: "+ name +
+                        "\nFecha: "+ appointments.get(i).getDate()+
+                        "\nHora: \n"+ appointments.get(i).getTime());
             }
         }
+
     }
 
     public void deleteAppointmentEntity(LocalDate date) {
@@ -110,16 +118,3 @@ public class AppointmentBookController {
 
 }
 
-   /* public void update(AppointmentEntity a, LocalDate date, LocalTime time){
-        if (Appointments.contains(a))
-        {
-            a.setDate(date);
-            a.setTime(time);
-            a.setDatetime(date.atTime(time));
-            System.out.println("Updated appointment " + a.toString());
-        }
-        else
-            System.out.println("Appointment not found");
-    }
-}
-*/

@@ -156,10 +156,9 @@ public class AdminEntityController {
         }catch(Exception e){
 
         }*/
-
         try {
 
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.txt"));
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.txt\\"));
             String temp = "";
             String bfRead;
             while ((bfRead = bf.readLine()) != null) {

@@ -38,11 +38,13 @@ public class PaymentEntityController {
         }
     }
 
-    public void listPatientPayments(int id){
+    public void listPatientPayments(int id, String name){
 
         for(int i = 0; i < payments.size(); i++){
             if(id == payments.get(i).getPatientId()){
-                System.out.println(payments);
+                System.out.println("ID: "+ payments.get(i).getId() + "\nNombre: " + name+
+                        "\nConcepto: "+ payments.get(i).getConcept()+
+                        "\nMonto: \n"+ payments.get(i).getAmount());
             }
         }
     }
@@ -66,8 +68,6 @@ public class PaymentEntityController {
                         "\nMonto: " + payments.get(i).getAmount());
 
             }
-
-            System.out.println("\npago añadido exitosamente\n");
             writeBuff.close();
         } catch (Exception e) {
 

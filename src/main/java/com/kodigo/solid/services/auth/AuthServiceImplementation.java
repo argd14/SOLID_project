@@ -10,8 +10,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-@Data
+
 @NoArgsConstructor
+@Data
 public class AuthServiceImplementation {
 
     //Variables
@@ -19,6 +20,7 @@ public class AuthServiceImplementation {
     private String username;
     private String password;
     private int idAuth;
+    private String userAuth;
     private ArrayList<UserEntity> users = new ArrayList<>();
     private Boolean verified = false;
     private MenuAdminEntity adminMenu = new MenuAdminEntity();
@@ -29,36 +31,42 @@ public class AuthServiceImplementation {
     //Metodos o funcionalidades
     public void userLogin() {
         this.userDatabase();
-        System.out.println("Login");
-        System.out.println("Usuario");
-        username = sc.nextLine();
-        System.out.println("Password");
-        password = sc.nextLine();
 
-        for (int i = 0; i < users.size(); i++) {
-            if (username.equals(users.get(i).getUsername()) && password.equals(users.get(i).getPassword())) {
-                verified = true;
-                userRol = users.get(i).getRole();
-               // this.setIdauth(users.get(i).getId());
-                idAuth = users.get(i).getId();
-                userMenu.idAuth(this.idAuth);
+        try {
+            System.out.println("Login");
+            System.out.println("Usuario");
+            username = sc.nextLine();
+            System.out.println("Password");
+            password = sc.nextLine();
+
+            for (int i = 0; i < users.size(); i++) {
+                if (username.equals(users.get(i).getUsername()) && password.equals(users.get(i).getPassword())) {
+                    verified = true;
+                    userRol = users.get(i).getRole();
+                    idAuth = users.get(i).getId();
+                    userAuth=users.get(i).getName();
+                    userMenu.idAuth(this.idAuth,this.userAuth);
+                }
             }
-        }
-        System.out.println("\nVerificando usuario...");
-        if (verified = true) {
-            System.out.println("\nUsuario verificado. Bienvenido ");
+
             if (getUserRol().equals(1)) {
                 adminMenu.viewMenuAdmin();
             } else if (getUserRol().equals(2)) {
                 doctorMenu.viewMenuDoctor();
-            } else if (getUserRol().equals(3)){
+            } else if (getUserRol().equals(3)) {
                 userMenu.viewMenuPatient();
-            }
-        } else {
+            } else{
             System.out.println("\nUsuario o contraseña no validos. Intentelo de nuevo\n");
             userLogin();
         }
+    }catch(
+    Exception e) {
+            System.out.println("\nUsuario o contraseña no validos. Intentelo de nuevo\n");
+        userLogin();
     }
+
+}
+
     public void userDatabase() {
         UserEntity admin = new UserEntity(
                 1,
@@ -82,7 +90,7 @@ public class AuthServiceImplementation {
         users.add(patient1);
         UserEntity doctor = new UserEntity(
                 3,
-                "Dr. Rivas",
+                "Rivas",
                 "rivas",
                 LocalDate.parse("1973-10-08"),
                 "77895641",

@@ -8,13 +8,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 @Data
 public class AppointmentEntity implements Serializable {
-  private int id;
-  private int patientId;
-  private LocalDate date;
-  private LocalTime time;
-  private LocalDateTime datetime;
+    @Getter
+    private int id;
+    @Getter
+    private int patientId;
+    @Getter
+    private LocalDate date;
+    @Getter
+    private LocalTime time;
+    private LocalDateTime datetime;
 
 //  public AppointmentEntity(Entity<DoctorEntity> doctorInCharge, Entity<PatientEntity> patient)
 //      throws IOException, ClassNotFoundException {
@@ -23,25 +28,23 @@ public class AppointmentEntity implements Serializable {
 //    this.id = new AppoimentRepository(new AppoimentDataManagement()).count();
 //  }
 
-  public AppointmentEntity(int patientId, LocalDate date, LocalTime time)
-  {
-    this.patientId = patientId;
-    this.date = date;
-    this.time= time;
-    this.datetime = date.atTime(time);
-  }
+    public AppointmentEntity(int id, int patientId, LocalDate date, LocalTime time) {
+        this.id = id;
+        this.patientId = patientId;
+        this.date = date;
+        this.time = time;
+        this.datetime = date.atTime(time);
+    }
 
-  public String getDateString()
-  {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
-    return datetime.format(formatter);
-  }
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
+        return datetime.format(formatter);
+    }
 
-  @Override
-  public String toString()
-  {
-    return ("Cita ID: " + this.id + ".\n"  + "Paciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
-  }
+    @Override
+    public String toString() {
+        return ("Cita ID: " + this.id + ".\n" + "Paciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
+    }
 
 }
 

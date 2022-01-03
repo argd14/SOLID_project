@@ -1,18 +1,13 @@
 package com.kodigo.solid.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Data
-
-@NoArgsConstructor
 public class PatientEntity extends UserEntity implements Entity, Serializable {
-  private PatientEntity prescription;
 
-  public PatientEntity(int id, String username, String name, LocalDate date, String phone, String email, String password, int rol) {
+
+  public PatientEntity(int id, String username, String name, LocalDate birthday, String phoneNumber, String email, String password, int role) {
+    super(id, username, name, birthday, phoneNumber, email, password, role);
+
   }
-
 }

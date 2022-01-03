@@ -1,9 +1,11 @@
 package com.kodigo.solid.commands;
+
 import com.kodigo.solid.entities.AdminEntity;
 import com.kodigo.solid.entities.DoctorEntity;
 import com.kodigo.solid.entities.PatientEntity;
 import com.kodigo.solid.entities.UserEntity;
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,17 +14,16 @@ import java.util.Scanner;
 @Data
 public class AdminEntityController {
 
+    UserEntity user;
+    Scanner sc = new Scanner(System.in);
+    int option;
     private boolean addDoctor = false;
     private ArrayList<AdminEntity> AdminEntityList = new ArrayList<>();
     private ArrayList<DoctorEntity> DoctorEntityList = new ArrayList<>();
     private ArrayList<PatientEntity> PatientEntityList = new ArrayList<>();
     private ArrayList<UserEntity> UsersEntityList = new ArrayList<>();
-    UserEntity user;
-    Scanner sc = new Scanner(System.in);
     private int id;
-    int option;
     private boolean exit;
-
 
 
     public void addUserEntity() {
@@ -46,16 +47,16 @@ public class AdminEntityController {
         System.out.println("ingrese el rol del usuario: ");
         int rol = sc.nextInt();
 
-            user = new UserEntity(id,username,name,date,phone,email,password,rol);
-            UsersEntityList.add(user);
+        this.user = new UserEntity(id, username, name, date, phone, email, password, rol);
+        UsersEntityList.add(this.user);
         if (rol == 1) {
-            AdminEntity admin = new AdminEntity(id,username,name,date,phone,email,password,rol) ;
+            AdminEntity admin = new AdminEntity(id, username, name, date, phone, email, password, rol);
             AdminEntityList.add(admin);
-        }else if (rol == 2) {
+        } else if (rol == 2) {
             DoctorEntity doctor = new DoctorEntity(id, username, name, date, phone, email, password, rol);
             DoctorEntityList.add(doctor);
-        }else if (rol == 3) {
-            PatientEntity patient = new PatientEntity(id, username,name, date, phone, email, password, rol);
+        } else if (rol == 3) {
+            PatientEntity patient = new PatientEntity(id, username, name, date, phone, email, password, rol);
             PatientEntityList.add(patient);
         }
     }
@@ -81,7 +82,7 @@ public class AdminEntityController {
 
     }
 */
-    public void updateUserEntity(){
+    public void updateUserEntity() {
         System.out.println("Ingrese el ID del usuario a actualizar: ");
         id = sc.nextInt();
         for (int i = 0; i < getUsersEntityList().size(); i++) {
@@ -90,21 +91,29 @@ public class AdminEntityController {
                 System.out.println("==============================");
                 System.out.println("--------ACTUALIZANDO DATOS DEL USUARIO-----r");
                 System.out.println("ingrese el userName: ");
-                user.setUsername(sc.next());
+                String username = sc.next();
                 System.out.println("ingrese el nombre del usuario: ");
-                user.setName(sc.next());
+                String name = (sc.next());
                 System.out.println("ingrese la fecha de nacimiento: ");
-                user.setBirthday(LocalDate.parse(sc.next()));
+                LocalDate birthday = (LocalDate.parse(sc.next()));
                 System.out.println("ingrese el numero de telefono: ");
-                user.setPhoneNumber(sc.next());
+                String telephone = (sc.next());
                 System.out.println("ingrese el email del usuario: ");
-                user.setEmail(sc.next());
+                String email = (sc.next());
                 System.out.println("ingrese la contraseña: ");
-                user.setPassword(sc.next());
+                String password = (sc.next());
                 System.out.println("ingrese el rol del usuario: ");
-                user.setRole(sc.nextInt());
+                int rol = (sc.nextInt());
                 System.out.println("El registro fue actualizado exitosamente\n");
-
+                this.user = new UserEntity(
+                        1,
+                        username,
+                        name,
+                        birthday,
+                        telephone,
+                        telephone,
+                        password,
+                        rol);
 
             } else {
                 System.out.println("No se encuentro el numero de usuario");
@@ -112,7 +121,7 @@ public class AdminEntityController {
         }
     }
 
-    public  void deleteUserEntity(){
+    public void deleteUserEntity() {
 
         System.out.println("Ingrese el ID del usuario a Eliminar: ");
         id = sc.nextInt();
@@ -129,7 +138,7 @@ public class AdminEntityController {
     }
 
     public void showUserEntity() {
-        while(!exit) {
+        while (!exit) {
             System.out.println("1-mostrar todos los usuarios\n" + "2-buscar usuario por ID");
             option = sc.nextInt();
             switch (option) {

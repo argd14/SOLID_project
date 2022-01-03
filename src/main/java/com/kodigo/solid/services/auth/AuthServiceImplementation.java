@@ -7,7 +7,6 @@ package com.kodigo.solid.services.auth;
 //import com.kodigo.solid.data.repositories.DoctorRepository;
 //import com.kodigo.solid.data.repositories.PatientRepository;
 
-import com.kodigo.solid.entities.LoginEntity;
 import com.kodigo.solid.entities.UserEntity;
 import com.kodigo.solid.views.MenuAdminEntity;
 import com.kodigo.solid.views.MenuDoctorEntity;
@@ -15,18 +14,18 @@ import com.kodigo.solid.views.MenuPatientEntity;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AuthServiceImplementation
         implements main.java.com.kodigo.solid.services.auth.AuthService {
 
-    LoginEntity loginEntity = new LoginEntity();
     UserEntity user = null;
     String Username;
     String Password;
 
-    List<UserEntity> users = loginEntity.users;
+    List<UserEntity> users = new ArrayList<>();
 
     //  private DoctorRepository doctorRepository;
 //  private PatientRepository patientRepository;
@@ -64,11 +63,11 @@ public class AuthServiceImplementation
         }
 
         System.out.println("\nVerificando usuario...");
-
+        System.out.println(user);
         if (Verified == true) {
             System.out.println("\nUsuario verificado");
             System.out.println(user.getRole());
-            System.out.println(users);
+            System.out.println(user);
 
             if (user.getRole() == 1) {
 

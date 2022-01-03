@@ -2,7 +2,6 @@ package com.kodigo.solid.views;
 
 import com.kodigo.solid.commands.AppointmentBookController;
 import com.kodigo.solid.commands.DoctorEntityController;
-import com.kodigo.solid.entities.LoginEntity;
 import com.kodigo.solid.services.auth.ConsultationService;
 import com.kodigo.solid.services.auth.PrintConsultationsService;
 
@@ -11,7 +10,6 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuDoctorEntity {
-    LoginEntity login = new LoginEntity();
     Scanner sc = new Scanner(System.in);
     DoctorEntityController DoctorEntity = new DoctorEntityController();
     AppointmentBookController appointmentBook = new AppointmentBookController();
@@ -134,7 +132,6 @@ public class MenuDoctorEntity {
                 case 0:
                     // Salir
                     exit = true;
-                    login.userLogin();
                     break;
 
                 default:

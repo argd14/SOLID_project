@@ -86,7 +86,7 @@ public class AdminEntityController {
                         "\nfecha de nacimiento: " + UsersEntityList.get(i).getBirthday() +
                         "\nnumero de telefono: " + UsersEntityList.get(i).getPhoneNumber() +
                         "\nemail: " + UsersEntityList.get(i).getEmail() +
-                        "\ncontraseña: " + UsersEntityList.get(i).getPassword());
+                        "\ncontraseña:\n" + UsersEntityList.get(i).getPassword());
             }
 
             System.out.println("\nUsuario añadido exitosamente\n");
@@ -132,39 +132,29 @@ public class AdminEntityController {
     }
 
     public void showUserEntity() {
-
-      /*  try {
-            File directory = new File(".");
-            File fileRead = new File(directory, "fileUser.text");
-
-            FileReader read = new FileReader(fileRead);
-            BufferedReader readBuff = new BufferedReader(read);
-            List<UserEntity> ListBuff = new LinkedList<>();
-            String linea = null;
-
-
-            for (int i = 0; i < UsersEntityList.size(); i++) {
-
-                if (id == UsersEntityList.get(i).getId()) {
-                    System.out.println(UsersEntityList.get(i));
-
-                }
-
-
-            }
-
-        }catch(Exception e){
-
-        }*/
         try {
+            String linea ;
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.text"));
+           linea = bf.readLine();
+           while (linea != null) {
+               System.out.println(linea);
+               linea = bf.readLine();
+              /* String data[] = linea.split(";");
+               System.out.println(data.length);
+               String name = data[0];
+               String fecha = data[1];
+               String number = data[2];
+               String email = data[3];
+               String pass = data[4];
 
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.txt\\"));
-            String temp = "";
-            String bfRead;
-            while ((bfRead = bf.readLine()) != null) {
-                temp = temp + bfRead;
-            }
-            System.out.println(temp);
+               System.out.println("\nnombre: "+ name+
+                       "\nfecha: "+ fecha+
+                       "\nnumero: "+ number+
+                       "\nemail: "+ email+
+                       "\ncontraseña: "+ pass);
+               linea = bf.readLine();*/
+           }
+
         } catch (Exception e) {
 
             System.err.println("error -->" + e.getMessage());

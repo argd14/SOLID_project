@@ -3,9 +3,7 @@ package com.kodigo.solid.commands;
 import com.kodigo.solid.entities.*;
 import lombok.Data;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -64,13 +62,35 @@ public class AppointmentBookController {
 
     }
 
-    public void listAppointments() {
-        appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
-        for (AppointmentEntity a : appointments) {
-            if (a != null) {
-                System.out.println(a.toString());
+    public void ShowAppointmentsEntity() {
+        try {
+            String linea ;
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileAppointment.text"));
+            linea = bf.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = bf.readLine();
+              /* String data[] = linea.split(";");
+               System.out.println(data.length);
+               String name = data[0];
+               String fecha = data[1];
+               String number = data[2];
+               String email = data[3];
+               String pass = data[4];
+
+               System.out.println("\nnombre: "+ name+
+                       "\nfecha: "+ fecha+
+                       "\nnumero: "+ number+
+                       "\nemail: "+ email+
+                       "\ncontraseña: "+ pass);
+               linea = bf.readLine();*/
             }
+
+        } catch (Exception e) {
+
+            System.err.println("error -->" + e.getMessage());
         }
+
     }
 
     public void listAppointmentsByDay(LocalDate date) {

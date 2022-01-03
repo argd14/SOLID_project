@@ -74,17 +74,14 @@ public class MenuAdminEntity {
                    System.out.println("==============================");
                    System.out.println("-------MOSTRAR USUARIOS-------");
                    userController.showUserEntity();
-                   System.out.println("1 - Buscar usuario por ID\n" + "0 - Regresar");
+                   System.out.println("\n0 - Regresar");
                    option = sc.nextInt();
-                   System.out.println("Ingrese el ID del usuario a ver: ");
-                   id = sc.nextInt();
-                   if(option == 1){
-                      // userController.showUserEntity(id);
-                   }else if(option == 0){
-                       this.viewMenuAdmin();
-                   }else{
-                       exit = true;
-                   }
+                     if(option == 0){
+                         viewMenuAdmin();
+                     }else{
+                         exit = true;
+                     }
+
                    break;
                case 5:
                    //Reporte citas

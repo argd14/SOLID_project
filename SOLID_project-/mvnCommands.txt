@@ -1,1 +1,0 @@
-createPatient -n=Eduardo Lemus -b=1998-24-30 -p=1111-3333 -m=asd@gmail.com -pw=secret -g=man

@@ -22,7 +22,7 @@ public class AuthServiceImplementation
         implements main.java.com.kodigo.solid.services.auth.AuthService {
 
     LoginEntity loginEntity = new LoginEntity();
-    UserEntity user = new UserEntity();
+    UserEntity user = null;
     String Username;
     String Password;
 
@@ -134,37 +134,6 @@ public class AuthServiceImplementation
         users.add(doctor);
     }
 
-  /* public void loginUser() throws IOException, ClassNotFoundException {
-
-      Scanner sc = new Scanner(System.in);
-      System.out.println("Login");
-      System.out.println("Usuario");
-      Username = sc.nextLine();
-      System.out.println("Password");
-      Password = sc.nextLine();
-
-      List<Entity<DoctorEntity>> ListDoctorEntity = this.doctorRepository.findAll();
-      List<Entity<PatientEntity>> ListPatientEntity = this.patientRepository.findAll();
-      List<Entity<Admin>> ListAdminEntity = this.adminRepository.findAll();
-
-      List<Entity<? extends UserEntity>> allUser = Stream.concat(ListDoctorEntity.stream(), Stream.concat(ListAdminEntity.stream(), ListPatientEntity.stream())).toList();
-      int option;
-      boolean verified2 = false;
-
-      option = ListAdminEntity.stream().filter();
-
-
-      if (Username.equals(allUser)) {
-          Verified = true;
-          user = users.get(i);
-          //
-          break;
-      } else {
-          Verified = false;
-      }
-
-
-  }*/
 
     @Override
     public void logout() {

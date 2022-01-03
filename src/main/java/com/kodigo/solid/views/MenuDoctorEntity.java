@@ -53,17 +53,19 @@ public class MenuDoctorEntity {
                         );
                         int option = sc.nextInt();
                         switch (option) {
-                            case 1:
+                            case 1 -> {
+                                System.out.println("==============================");
                                 consultationService.createConsultation();
-                                break;
-                            case 2:
+                            }
+                            case 2 -> {
+                                System.out.println("==============================");
                                 consultationService.showAll();
-                                break;
-                            case 3:
+                            }
+                            case 3 -> {
+                                System.out.println("==============================");
                                 printConsultationsService.createPdf();
-                                break;
-                            default:
-                                System.out.println("Opcion invalida");
+                            }
+                            default -> System.out.println("Opcion invalida");
                         }
                     }
                     break;

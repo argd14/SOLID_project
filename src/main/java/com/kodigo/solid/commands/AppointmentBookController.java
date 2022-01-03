@@ -15,15 +15,17 @@ import java.util.Scanner;
 public class AppointmentBookController {
     private List<AppointmentEntity> appointments = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
+    private AdminEntityController listUser;
     private AppointmentEntity appointment;
 
-    public void addAppointmentEntity(int id) {
+    public void addAppointmentEntity(int id, String name) {
         System.out.println("\nIngrese los datos de la cita");
         System.out.println("Ingrese Fecha");
         LocalDate d = LocalDate.parse(sc.next());
         System.out.println("Ingrese Hora");
         LocalTime t = LocalTime.parse(sc.next());
-        appointment = new AppointmentEntity(id, d, t);
+
+        appointment = new AppointmentEntity(id, name, d, t);
         appointments.add(appointment);
         fileWrite();
 
@@ -70,20 +72,6 @@ public class AppointmentBookController {
             while (linea != null) {
                 System.out.println(linea);
                 linea = bf.readLine();
-              /* String data[] = linea.split(";");
-               System.out.println(data.length);
-               String name = data[0];
-               String fecha = data[1];
-               String number = data[2];
-               String email = data[3];
-               String pass = data[4];
-
-               System.out.println("\nnombre: "+ name+
-                       "\nfecha: "+ fecha+
-                       "\nnumero: "+ number+
-                       "\nemail: "+ email+
-                       "\ncontraseña: "+ pass);
-               linea = bf.readLine();*/
             }
 
         } catch (Exception e) {
@@ -107,18 +95,22 @@ public class AppointmentBookController {
 
     public void listPatientAppointments(int id, String name) {
        // appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
-        System.out.println(id);
-        System.out.println(name);
-        System.out.println(appointments);
-        for(int i = 1; i <= appointments.size(); i++) {
-            System.out.println(appointments);
-            if(id == appointments.get(i).getPatientId()){
 
-                System.out.println("\nNombre cliente: "+ name +
-                        "\nFecha: "+ appointments.get(i).getDate()+
-                        "\nHora: \n"+ appointments.get(i).getTime());
+        try {
+            String linea ;
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileAppointment.text"));
+            linea = bf.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = bf.readLine();
             }
+
+        } catch (Exception e) {
+
+            System.err.println("error -->" + e.getMessage());
         }
+
+
 
     }
 

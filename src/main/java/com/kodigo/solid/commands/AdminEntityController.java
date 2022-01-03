@@ -7,21 +7,10 @@ import com.kodigo.solid.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
-
-import static org.apache.pdfbox.pdmodel.font.PDType1Font.*;
-import static org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName.TIMES_BOLD;
-
 
 @Data
 @AllArgsConstructor
@@ -139,20 +128,6 @@ public class AdminEntityController {
            while (linea != null) {
                System.out.println(linea);
                linea = bf.readLine();
-              /* String data[] = linea.split(";");
-               System.out.println(data.length);
-               String name = data[0];
-               String fecha = data[1];
-               String number = data[2];
-               String email = data[3];
-               String pass = data[4];
-
-               System.out.println("\nnombre: "+ name+
-                       "\nfecha: "+ fecha+
-                       "\nnumero: "+ number+
-                       "\nemail: "+ email+
-                       "\ncontraseña: "+ pass);
-               linea = bf.readLine();*/
            }
 
         } catch (Exception e) {

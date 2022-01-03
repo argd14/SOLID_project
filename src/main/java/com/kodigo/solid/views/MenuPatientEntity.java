@@ -56,7 +56,7 @@ public class MenuPatientEntity {
                     option2 = sc.nextInt();
                     switch (option2) {
                         case 1:
-                            appointmentBook.addAppointmentEntity(this.idAuth);
+                            appointmentBook.addAppointmentEntity(this.idAuth,this.userAuth);
                             break;
                         case 2:
                             System.out.println("Ingrese el ID de la cita ");

@@ -18,7 +18,13 @@ public class MenuDoctorEntity {
   private boolean exit = false;
   private int option, option3;
   private int option2;
+  int idAuth;
+  String userAuth;
 
+  public void idAuth(int id, String nombre) {
+    this.idAuth = id;
+    this.userAuth =nombre;
+  }
   public void viewMenuDoctor() throws IOException {
     while (!exit) {
 
@@ -33,9 +39,7 @@ public class MenuDoctorEntity {
       System.out.println("  - Enviar receta por email");
       System.out.println("==============================");
       System.out.println("--- 3 - AGENDA----- ");
-      System.out.println("  - Mostrar citas");
-      System.out.println("  - Mostrar citas / dia");
-      System.out.println(" 0 - Salir ");
+      System.out.println("--- 0 - Salir ");
       System.out.println();
       System.out.print(" Ingrese la opción que desea: ");
       option = sc.nextInt();
@@ -57,15 +61,15 @@ public class MenuDoctorEntity {
             switch (option) {
               case 1 -> {
                 System.out.println("==============================");
-                consultationService.createConsultation();
+              //  consultationService.createConsultation(2);
               }
               case 2 -> {
                 System.out.println("==============================");
-                consultationService.showAll();
+              //  consultationService.showAll();
               }
               case 3 -> {
                 System.out.println("==============================");
-                printConsultationsService.createPdf();
+               // printConsultationsService.createPdf();
               }
               default -> System.out.println("Opcion invalida");
             }
@@ -112,24 +116,12 @@ public class MenuDoctorEntity {
         case 3:
           // Agenda
           System.out.println("==============================");
-          System.out.println(
-                  "AGENDA\n"
-                          + "1 - Todas las citas\n"
-                          + "2 - Citas del dia");
-          option3 = sc.nextInt();
-          switch (option3) {
-            case 1:
-              System.out.println("==============================");
-              // Listar todas las citas
-              appointmentBook.ShowAppointmentsEntity();
-              break;
-            case 2:
-              System.out.println("==============================");
-              // Listar citas de hoy
-              appointmentBook.listAppointmentsByDay(LocalDate.now());
-              break;
-            default:
-              break;
+          System.out.println("-----AGENDA----");
+          appointmentBook.ShowAppointmentsEntity();
+          System.out.println("0 - Regresar");
+          int op = sc.nextInt();
+          if (op == 0) {
+            viewMenuDoctor();
           }
           break;
 

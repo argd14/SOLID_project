@@ -18,4 +18,11 @@ public class PrescriptionEntity {
         this.medicineName = medicine;
         this.dosage = dosage;
     }
+
+    @Override
+    public String toString() {
+        return ("\nPrescripcion: " +
+                "\nNombre medicina: " + medicineName +
+                "\nDosis: " + dosage );
+    }
 }

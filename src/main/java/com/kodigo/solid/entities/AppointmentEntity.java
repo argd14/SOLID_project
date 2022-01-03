@@ -1,6 +1,8 @@
 package com.kodigo.solid.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,20 +10,30 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Data
+@NoArgsConstructor
 public class AppointmentEntity implements Serializable {
   private int patientId;
   private LocalDate date;
   private LocalTime time;
   private LocalDateTime datetime;
 
+  public AppointmentEntity(int id, String name, LocalDate d, LocalTime t) {
 
-  public AppointmentEntity(int patientId, LocalDate date, LocalTime time)
-  {
-    this.patientId = patientId;
-    this.date = date;
-    this.time= time;
+    this.patientId = id;
+    this.date = d;
+    this.time = t;
     this.datetime = date.atTime(time);
   }
+  public void AppointmentEntity2(int id, LocalDate d, LocalTime t) {
+
+    this.patientId = id;
+    this.date = d;
+    this.time = t;
+    this.datetime = date.atTime(time);
+  }
+
+
+
 
   public String getDateString()
   {

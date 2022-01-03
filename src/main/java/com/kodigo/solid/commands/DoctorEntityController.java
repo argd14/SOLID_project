@@ -6,6 +6,7 @@ import com.kodigo.solid.entities.PrescriptionEntity;
 import com.kodigo.solid.utils.usefullObjects.Prescription;
 import lombok.Data;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,19 +28,23 @@ public class DoctorEntityController {
         String dosage = sc.nextLine();
         PrescriptionEntity Prescription = new PrescriptionEntity(this.idPatient,this.medicine, dosage);
         prescriptionsList.add(Prescription);
-
+        fileWrite();
 
     }
 
     public void showPrescription() {
-        System.out.println(prescriptionsList);
-        System.out.println("Ingrese el ID del paciente ");
-        int id = sc.nextInt();
-        for (int i = 0; i < prescriptionsList.size(); i++) {
-            if (id == prescriptionsList.get(i).getId()) {
-                System.out.println("Mostrando datos receta: " +
-                        " nombre medicamento: " + prescriptionsList.get(i).getMedicineName() + " Dosis: " + prescriptionsList.get(i).getDosage());
+        try {
+            String linea ;
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\filePrescription.text"));
+            linea = bf.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = bf.readLine();
             }
+
+        } catch (Exception e) {
+
+            System.err.println("error -->" + e.getMessage());
         }
     }
 
@@ -49,7 +54,31 @@ public class DoctorEntityController {
         for (int i = 0; i < prescriptionsList.size(); i++) {
             if (id == prescriptionsList.get(i).getId()) {
                 prescriptionsList.remove(i);
+                System.out.println("Prescripcion eliminada exitosamente");
+                System.out.println(prescriptionsList);
             }
         }
     }
+
+    public void fileWrite() {
+        try {
+
+            File directory = new File(".");
+            File fileUser = new File(directory, "filePrescription.text");
+            FileWriter write = new FileWriter(fileUser);
+            BufferedWriter writeBuff = new BufferedWriter(write);
+
+            for (int i = 0; i < prescriptionsList.size(); i++) {
+                writeBuff.write("\nId paciente: "+ prescriptionsList.get(i).getId()+"\nNombre de medicamento: " + prescriptionsList.get(i).getMedicineName() +
+                        "\nDosis recomendada: " + prescriptionsList.get(i).getDosage()) ;
+            }
+
+            System.out.println("\nPrescripcion añadida exitosamente\n");
+            writeBuff.close();
+        } catch (Exception e) {
+
+            System.out.println("Error -->" + e.getMessage());
+        }
+    }
+
 }

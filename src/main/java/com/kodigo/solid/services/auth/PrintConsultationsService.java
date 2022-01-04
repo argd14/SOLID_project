@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class PrintConsultationsService {
-    /*
     private Database database = new Database();
 
     public void createPdf() throws IOException {
@@ -30,7 +29,7 @@ public class PrintConsultationsService {
             content.beginText();
             content.newLineAtOffset(100, 700 - 20f * lines);
             content.setFont(font, 12);
-            content.showText("Consulta ID >" + consulation.getId() + ", Fecha: " + consulation.getConsultationDate());
+            content.showText("Consulta ID: " + consulation.getId() + ", Fecha: " + consulation.getConsultationDate());
 
             content.endText();
             ++lines;
@@ -54,5 +53,5 @@ public class PrintConsultationsService {
         builder.append(":");
         builder.append(LocalDateTime.now().getSecond());
         return builder.toString();
-    }*/
+    }
 }

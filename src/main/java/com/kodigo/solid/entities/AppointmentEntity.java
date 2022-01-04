@@ -1,7 +1,9 @@
 package com.kodigo.solid.entities;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,30 +11,23 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-@Data
-@NoArgsConstructor
-public class AppointmentEntity implements Serializable {
-  private int patientId;
+
+
+public class AppointmentEntity extends BaseEntity implements Serializable {
+  @Getter @Setter
   private LocalDate date;
-  private LocalTime time;
-  private LocalDateTime datetime;
+  @Getter @Setter private LocalTime time;
+  @Getter private LocalDateTime datetime;
 
-  public AppointmentEntity(int id, String name, LocalDate d, LocalTime t) {
 
-    this.patientId = id;
+
+  public AppointmentEntity(int id, LocalDate d, LocalTime t) {
+
+    super(id);
     this.date = d;
     this.time = t;
     this.datetime = date.atTime(time);
   }
-  public void AppointmentEntity2(int id, LocalDate d, LocalTime t) {
-
-    this.patientId = id;
-    this.date = d;
-    this.time = t;
-    this.datetime = date.atTime(time);
-  }
-
-
 
 
   public String getDateString()
@@ -42,11 +37,14 @@ public class AppointmentEntity implements Serializable {
   }
 
   @Override
-  public String toString()
-  {
-    return ( "\nPaciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
-  }
+  public String toString() {
+    return "AppointmentEntity{" +
 
+            "date=" + date +
+            ", time=" + time +
+            ", id=" + id +
+            '}';
+  }
 }
 
 

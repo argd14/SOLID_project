@@ -61,15 +61,15 @@ public class MenuDoctorEntity {
             switch (option) {
               case 1 -> {
                 System.out.println("==============================");
-              //  consultationService.createConsultation(2);
+                consultationService.createConsultation();
               }
               case 2 -> {
                 System.out.println("==============================");
-              //  consultationService.showAll();
+                consultationService.showAll();
               }
               case 3 -> {
                 System.out.println("==============================");
-               // printConsultationsService.createPdf();
+                printConsultationsService.createPdf();
               }
               default -> System.out.println("Opcion invalida");
             }

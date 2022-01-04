@@ -1,12 +1,9 @@
 package com.kodigo.solid.views;
 
-import com.kodigo.solid.commands.AdminEntityController;
 import com.kodigo.solid.commands.AppointmentBookController;
 import com.kodigo.solid.commands.PaymentEntityController;
 import com.kodigo.solid.entities.AppointmentEntity;
 import com.kodigo.solid.entities.PaymentEntity;
-import com.kodigo.solid.services.auth.AuthServiceImplementation;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

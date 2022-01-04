@@ -16,7 +16,7 @@ public class AppointmentBookController {
     private List<AppointmentEntity> appointments = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
     private AdminEntityController listUser;
-    private AppointmentEntity appointment;
+    private AppointmentEntity appointment = null;
 
     public void addAppointmentEntity(int id, String name) {
         System.out.println("\nIngrese los datos de la cita");
@@ -25,7 +25,7 @@ public class AppointmentBookController {
         System.out.println("Ingrese Hora");
         LocalTime t = LocalTime.parse(sc.next());
 
-        appointment = new AppointmentEntity(id, name, d, t);
+        appointment = new AppointmentEntity(id, d, t);
         appointments.add(appointment);
         fileWrite();
 
@@ -40,7 +40,7 @@ public class AppointmentBookController {
             BufferedWriter writeBuff = new BufferedWriter(write);
 
             for (int i = 0; i < appointments.size(); i++) {
-                writeBuff.write("\nId usuario: " + appointments.get(i).getPatientId() +
+                writeBuff.write(
                         "\nFecha de cita: " + appointments.get(i).getDate() +
                         "\nHora de la cita: " + appointments.get(i).getTime());
 

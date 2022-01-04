@@ -31,7 +31,7 @@ public class AuthServiceImplementation {
     //Metodos o funcionalidades
     public void userLogin() {
         this.userDatabase();
-
+    System.out.println(this.users);
         try {
             System.out.println("Login");
             System.out.println("Usuario");

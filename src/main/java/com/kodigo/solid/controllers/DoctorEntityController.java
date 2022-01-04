@@ -1,22 +1,23 @@
-package com.kodigo.solid.commands;
+package com.kodigo.solid.controllers;
 
-import com.kodigo.solid.entities.AdminEntity;
-import com.kodigo.solid.entities.PatientEntity;
 import com.kodigo.solid.entities.PrescriptionEntity;
-import com.kodigo.solid.utils.usefullObjects.Prescription;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 @Data
-public class DoctorEntityController {
+@NoArgsConstructor
+@AllArgsConstructor
+public class DoctorEntityController extends AbstractDoctorController {
     private String medicine;
     private int idPatient;
-    private ArrayList<PrescriptionEntity> prescriptionsList = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
 
+    @Override
     public  void addPrescription() {
         System.out.println("--------INGRESANDO DATOS DE LA RECETA-----");
         System.out.println("Ingrese el ID del paciente:");
@@ -28,10 +29,11 @@ public class DoctorEntityController {
         String dosage = sc.nextLine();
         PrescriptionEntity Prescription = new PrescriptionEntity(this.idPatient,this.medicine, dosage);
         prescriptionsList.add(Prescription);
-        fileWrite();
+        writeFile();
 
     }
 
+    @Override
     public void showPrescription() {
         try {
             String linea ;
@@ -48,6 +50,7 @@ public class DoctorEntityController {
         }
     }
 
+    @Override
     public void deletePrescription() {
         System.out.println("Ingrese el ID del paciente ");
         int id = sc.nextInt();
@@ -60,7 +63,8 @@ public class DoctorEntityController {
         }
     }
 
-    public void fileWrite() {
+    @Override
+    public void writeFile() {
         try {
 
             File directory = new File(".");

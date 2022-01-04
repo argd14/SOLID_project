@@ -1,4 +1,4 @@
-package com.kodigo.solid.commands;
+package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.AdminEntity;
 import com.kodigo.solid.entities.DoctorEntity;
@@ -9,27 +9,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminEntityController {
+public class AdminEntityController extends AbstractAdminController {
 
-    private ArrayList<AdminEntity> AdminEntityList = new ArrayList<>();
-    private ArrayList<DoctorEntity> DoctorEntityList = new ArrayList<>();
-    private ArrayList<PatientEntity> PatientEntityList = new ArrayList<>();
-    private ArrayList<UserEntity> UsersEntityList = new ArrayList<>();
     private UserEntity user;
-    Scanner sc = new Scanner(System.in);
     private int rol;
+    private Scanner sc = new Scanner(System.in);
 
-
-    public void addUserEntity() {
-
+    @Override
+    public void addEntity() {
         System.out.println("--------INGRESANDO DATOS DEL USUARIO-----");
-        System.out.println("ingrese el id del doctor: ");
+        System.out.println("ingrese el id del Usuario: ");
         int id = sc.nextInt();
         System.out.println("ingrese el userName: ");
         String username = sc.next();
@@ -48,11 +42,12 @@ public class AdminEntityController {
 
         user = new UserEntity(id, username, name, date, phone, email, password, rol);
         UsersEntityList.add(user);
-        fileWrite();
+        writeFile();
 
         if (this.rol == 1) {
             AdminEntity admin = new AdminEntity(id, username, name, date, phone, email, password, rol);
             AdminEntityList.add(admin);
+
         } else if (this.rol == 2) {
             DoctorEntity doctor = new DoctorEntity(id, username, name, date, phone, email, password, rol);
             DoctorEntityList.add(doctor);
@@ -62,7 +57,60 @@ public class AdminEntityController {
         }
     }
 
-    public void fileWrite() {
+    @Override
+    public void updateEntity() {
+        System.out.println("ingrese el userName: ");
+        user.setUsername(sc.next());
+        System.out.println("ingrese el nombre del usuario: ");
+        user.setName(sc.next());
+        System.out.println("ingrese la fecha de nacimiento: ");
+        user.setBirthday(LocalDate.parse(sc.next()));
+        System.out.println("ingrese el numero de telefono: ");
+        user.setPhoneNumber(sc.next());
+        System.out.println("ingrese el email del usuario: ");
+        user.setEmail(sc.next());
+        System.out.println("ingrese la contraseña: ");
+        user.setPassword(sc.next());
+        System.out.println("ingrese el rol del usuario: ");
+        user.setRole(sc.nextInt());
+        System.out.println("El registro fue actualizado exitosamente\n");
+
+    }
+
+    @Override
+    public void deleteEntity(int id) {
+        for (int i = 0; i < UsersEntityList.size(); i++) {
+            if (id == UsersEntityList.get(i).getId()) {
+                UsersEntityList.remove(i);
+                System.out.println("Usuario eliminado exitosamente\n");
+            } else {
+                System.out.println("No se encuentro el numero de usuario\n");
+            }
+        }
+
+    }
+
+    @Override
+    public void showAllEntity() {
+        try {
+            String linea;
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.text"));
+            linea = bf.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = bf.readLine();
+            }
+
+        } catch (Exception e) {
+
+            System.err.println("error -->" + e.getMessage());
+        }
+    }
+
+
+
+    @Override
+    public void writeFile() {
         try {
 
             File directory = new File(".");
@@ -84,56 +132,5 @@ public class AdminEntityController {
 
             System.out.println("Error -->" + e.getMessage());
         }
-    }
-
-    public void updateUserEntity() {
-
-        System.out.println("ingrese el userName: ");
-        user.setUsername(sc.next());
-        System.out.println("ingrese el nombre del usuario: ");
-        user.setName(sc.next());
-        System.out.println("ingrese la fecha de nacimiento: ");
-        user.setBirthday(LocalDate.parse(sc.next()));
-        System.out.println("ingrese el numero de telefono: ");
-        user.setPhoneNumber(sc.next());
-        System.out.println("ingrese el email del usuario: ");
-        user.setEmail(sc.next());
-        System.out.println("ingrese la contraseña: ");
-        user.setPassword(sc.next());
-        System.out.println("ingrese el rol del usuario: ");
-        user.setRole(sc.nextInt());
-        System.out.println("El registro fue actualizado exitosamente\n");
-
-    }
-
-    public void deleteUserEntity(int id) {
-
-        for (int i = 0; i < getUsersEntityList().size(); i++) {
-
-            if (id == UsersEntityList.get(i).getId()) {
-                UsersEntityList.remove(i);
-                System.out.println("Usuario eliminado exitosamente\n");
-            } else {
-                System.out.println("No se encuentro el numero de usuario\n");
-            }
-        }
-
-    }
-
-    public void showUserEntity() {
-        try {
-            String linea ;
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.text"));
-           linea = bf.readLine();
-           while (linea != null) {
-               System.out.println(linea);
-               linea = bf.readLine();
-           }
-
-        } catch (Exception e) {
-
-            System.err.println("error -->" + e.getMessage());
-        }
-
     }
 }

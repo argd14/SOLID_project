@@ -1,18 +1,63 @@
 package com.kodigo.solid.entities;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-public class AppointmentEntity {
-  private static final AtomicInteger count = new AtomicInteger(0);
-  @Getter private int id;
-  @Getter private DoctorEntity doctorInCharge;
-  @Getter private PatientEntity patient;
+@Data
+@NoArgsConstructor
+public class AppointmentEntity implements Serializable {
+  private int patientId;
+  private LocalDate date;
+  private LocalTime time;
+  private LocalDateTime datetime;
 
-  public AppointmentEntity(DoctorEntity doctorInCharge, PatientEntity patient) {
-    this.doctorInCharge = doctorInCharge;
-    this.patient = patient;
-    this.id = count.incrementAndGet();
+  public AppointmentEntity(int id, String name, LocalDate d, LocalTime t) {
+
+    this.patientId = id;
+    this.date = d;
+    this.time = t;
+    this.datetime = date.atTime(time);
   }
+  public void AppointmentEntity2(int id, LocalDate d, LocalTime t) {
+
+    this.patientId = id;
+    this.date = d;
+    this.time = t;
+    this.datetime = date.atTime(time);
+  }
+
+
+
+
+  public String getDateString()
+  {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
+    return datetime.format(formatter);
+  }
+
+  @Override
+  public String toString()
+  {
+    return ( "\nPaciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

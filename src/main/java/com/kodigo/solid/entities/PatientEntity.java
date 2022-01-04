@@ -1,29 +1,18 @@
 package com.kodigo.solid.entities;
 
-import com.kodigo.solid.utils.usefullObjects.HomeAddress;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class PatientEntity extends UserEntity {
-  @Getter private HomeAddress address;
-  @Getter private String gender;
+@Data
 
-  public PatientEntity(
-      String name,
-      Date birthday,
-      String phoneNumber,
-      String email,
-      String password,
-      HomeAddress address,
-      String gender) {
-    super(name, birthday, phoneNumber, email, password);
-    this.address = address;
-    this.gender = gender;
+@NoArgsConstructor
+public class PatientEntity extends UserEntity  {
+  private PatientEntity prescription;
+
+  public PatientEntity(int id, String username, String name, LocalDate date, String phone, String email, String password, int rol) {
   }
 
-  @Override
-  public String toString() {
-    return "PatientEntity{" + "address=" + address + ", gender='" + gender + '\'' + '}';
-  }
 }

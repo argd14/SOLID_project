@@ -1,9 +1,6 @@
 package com.kodigo.solid.commands;
 
-import com.kodigo.solid.entities.AdminEntity;
-import com.kodigo.solid.entities.PatientEntity;
 import com.kodigo.solid.entities.PrescriptionEntity;
-import com.kodigo.solid.utils.usefullObjects.Prescription;
 import lombok.Data;
 
 import java.io.*;
@@ -18,7 +15,7 @@ public class DoctorEntityController {
     private Scanner sc = new Scanner(System.in);
 
     public  void addPrescription() {
-        System.out.println("--------INGRESANDO DATOS DE LA RECETA-----");
+        System.out.println("--------INGRESANDO DATOS DE LA RECETA--------");
         System.out.println("Ingrese el ID del paciente:");
         idPatient = sc.nextInt();
         sc.nextLine();
@@ -49,12 +46,12 @@ public class DoctorEntityController {
     }
 
     public void deletePrescription() {
-        System.out.println("Ingrese el ID del paciente ");
+        System.out.println("Ingrese el ID del paciente: ");
         int id = sc.nextInt();
         for (int i = 0; i < prescriptionsList.size(); i++) {
             if (id == prescriptionsList.get(i).getId()) {
                 prescriptionsList.remove(i);
-                System.out.println("Prescripcion eliminada exitosamente");
+                System.out.println("¡Prescripción eliminada exitosamente!");
                 System.out.println(prescriptionsList);
             }
         }
@@ -73,7 +70,7 @@ public class DoctorEntityController {
                         "\nDosis recomendada: " + prescriptionsList.get(i).getDosage()) ;
             }
 
-            System.out.println("\nPrescripcion añadida exitosamente\n");
+            System.out.println("\nPrescripción añadida exitosamente\n");
             writeBuff.close();
         } catch (Exception e) {
 

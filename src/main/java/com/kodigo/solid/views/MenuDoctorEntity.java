@@ -7,7 +7,6 @@ import com.kodigo.solid.services.auth.ConsultationService;
 import com.kodigo.solid.services.auth.PrintConsultationsService;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuDoctorEntity {
@@ -28,20 +27,21 @@ public class MenuDoctorEntity {
   public void viewMenuDoctor() throws IOException {
     while (!exit) {
 
-      System.out.println("-----MENU DOCTOR----- ");
-      System.out.println("==============================");
-      System.out.println("--- 1 - GESTION HISTORIAL ----- ");
-      System.out.println("==============================");
-      System.out.println("--- 2 - GESTION DE RECETAS----- ");
+      System.out.println("----------MENÚ DOCTOR----------");
+      System.out.println("===============================");
+      System.out.println("--- 1 - GESTIÓN HISTORIAL -----");
+      System.out.println("===============================");
+      System.out.println("--- 2 - GESTIÓN DE RECETAS ----");
       System.out.println("  - Prescribir receta");
       System.out.println("  - Consultar receta");
       System.out.println("  - Eliminar receta");
       System.out.println("  - Enviar receta por email");
-      System.out.println("==============================");
-      System.out.println("--- 3 - AGENDA----- ");
+      System.out.println("===============================");
+      System.out.println("--- 3 - AGENDA ----------------");
+      System.out.println("===============================");
       System.out.println("--- 0 - Salir ");
       System.out.println();
-      System.out.print(" Ingrese la opción que desea: ");
+      System.out.print("Ingrese la opción que desea: ");
       option = sc.nextInt();
 
       switch (option) {
@@ -50,9 +50,9 @@ public class MenuDoctorEntity {
           ConsultationService consultationService = new ConsultationService();
           PrintConsultationsService printConsultationsService = new PrintConsultationsService();
           while (!exit) {
-            System.out.println("==============================");
+            System.out.println("===============================");
             System.out.println(
-                    "GESTION HISTORIAL MEDICO\n"
+                    "GESTIÓN HISTORIAL MÉDICO\n"
                             + "1 - Registrar consulta\n"
                             + "2 - Ver consultas\n"
                             + "3 - Imprimir hoja de consulta \n"
@@ -60,18 +60,18 @@ public class MenuDoctorEntity {
             int option = sc.nextInt();
             switch (option) {
               case 1 -> {
-                System.out.println("==============================");
+                System.out.println("===============================");
               //  consultationService.createConsultation(2);
               }
               case 2 -> {
-                System.out.println("==============================");
+                System.out.println("===============================");
               //  consultationService.showAll();
               }
               case 3 -> {
-                System.out.println("==============================");
+                System.out.println("===============================");
                // printConsultationsService.createPdf();
               }
-              default -> System.out.println("Opcion invalida");
+              default -> System.out.println("Opción inválida");
             }
           }
           break;
@@ -79,9 +79,9 @@ public class MenuDoctorEntity {
         case 2:
           // Gestion de recetas
           while (!exit) {
-            System.out.println("==============================");
+            System.out.println("===============================");
             System.out.println(
-                    "GESTION RECETAS\n"
+                    "GESTIÓN RECETAS\n"
                             + "1 - Preescribir receta\n"
                             + "2 - Consultar recetas\n"
                             + "3 - Eliminar recetas \n"
@@ -89,22 +89,22 @@ public class MenuDoctorEntity {
             option2 = sc.nextInt();
             switch (option2) {
               case 1:
-                System.out.println("==============================");
+                System.out.println("===============================");
                 // preescribir receta
                 DoctorEntity.addPrescription();
                 break;
               case 2:
-                System.out.println("==============================");
+                System.out.println("===============================");
                 // Consultar Recetas
                 DoctorEntity.showPrescription();
                 break;
               case 3:
-                System.out.println("==============================");
+                System.out.println("===============================");
                 // eliminar recetas
                 DoctorEntity.deletePrescription();
                 break;
               case 4:
-                System.out.println("==============================");
+                System.out.println("===============================");
                 exit = true;
                 break;
               default:
@@ -115,7 +115,7 @@ public class MenuDoctorEntity {
 
         case 3:
           // Agenda
-          System.out.println("==============================");
+          System.out.println("===============================");
           System.out.println("-----AGENDA----");
           appointmentBook.ShowAppointmentsEntity();
           System.out.println("0 - Regresar");

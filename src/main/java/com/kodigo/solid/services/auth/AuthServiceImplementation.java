@@ -6,6 +6,7 @@ import com.kodigo.solid.views.MenuDoctorEntity;
 import com.kodigo.solid.views.MenuPatientEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -33,10 +34,11 @@ public class AuthServiceImplementation {
         this.userDatabase();
 
         try {
-            System.out.println("Login");
-            System.out.println("Usuario");
+            System.out.println("---INICIO DE SESIÓN---");
+            System.out.println("======================");
+            System.out.println("Usuario: ");
             username = sc.nextLine();
-            System.out.println("Password");
+            System.out.println("Contraseña: ");
             password = sc.nextLine();
 
             for (int i = 0; i < users.size(); i++) {
@@ -56,7 +58,7 @@ public class AuthServiceImplementation {
             } else if (getUserRol().equals(3)) {
                 userMenu.viewMenuPatient();
             } else{
-            System.out.println("\nUsuario o contraseña no validos. Intentelo de nuevo\n");
+            System.out.println("\nUsuario o contraseña no válido. Inténtelo de nuevo\n");
             userLogin();
         }
     }catch(

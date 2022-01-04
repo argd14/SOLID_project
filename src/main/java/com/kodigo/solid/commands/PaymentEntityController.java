@@ -18,7 +18,7 @@ public class PaymentEntityController {
             if (id == payments.get(i).getId()) {
                System.out.println("ID pago: "+payments.get(i).getId() +
                        "\nFecha de pago: " + payments.get(i).getDatetime()+
-                       "\nconcepto: "+ payments.get(i).getConcept() +
+                       "\nConcepto: "+ payments.get(i).getConcept() +
                        "\nPago: "+ payments.get(i).getAmount());
                 break;
             } else {
@@ -44,7 +44,7 @@ public class PaymentEntityController {
             if(id == payments.get(i).getPatientId()){
                 System.out.println("ID: "+ payments.get(i).getId() + "\nNombre: " + name+
                         "\nConcepto: "+ payments.get(i).getConcept()+
-                        "\nMonto: \n"+ payments.get(i).getAmount());
+                        "\nMonto: "+ payments.get(i).getAmount());
             }
         }
     }

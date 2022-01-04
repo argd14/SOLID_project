@@ -7,6 +7,7 @@ import com.kodigo.solid.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,22 +29,23 @@ public class AdminEntityController {
 
     public void addUserEntity() {
 
-        System.out.println("--------INGRESANDO DATOS DEL USUARIO-----");
-        System.out.println("ingrese el id del doctor: ");
+        System.out.println("---INGRESE LOS DATOS DEL USUARIO---");
+        System.out.println("Ingrese el id del usuario: ");
         int id = sc.nextInt();
-        System.out.println("ingrese el userName: ");
-        String username = sc.next();
-        System.out.println("ingrese el nombre del usuario: ");
-        String name = sc.next();
-        System.out.println("ingrese la fecha de nacimiento: ");
-        LocalDate date = LocalDate.parse(sc.next());
-        System.out.println("ingrese el numero de telefono: ");
-        String phone = sc.next();
-        System.out.println("ingrese el email del usuario: ");
-        String email = sc.next();
-        System.out.println("ingrese la contraseña: ");
-        String password = sc.next();
-        System.out.println("ingrese el rol del usuario: ");
+        sc.nextLine();
+        System.out.println("Ingrese el UserName: ");
+        String username = sc.nextLine();
+        System.out.println("Ingrese el nombre de la persona: ");
+        String name = sc.nextLine();
+        System.out.println("Ingrese la fecha de nacimiento: ");
+        LocalDate date = LocalDate.parse(sc.nextLine());
+        System.out.println("Ingrese el número de telefono: ");
+        String phone = sc.nextLine();
+        System.out.println("Ingrese el email del usuario: ");
+        String email = sc.nextLine();
+        System.out.println("Ingrese la contraseña: ");
+        String password = sc.nextLine();
+        System.out.println("Ingrese el rol del usuario: ");
         rol = sc.nextInt();
 
         user = new UserEntity(id, username, name, date, phone, email, password, rol);
@@ -72,13 +74,13 @@ public class AdminEntityController {
 
             for (int i = 0; i < UsersEntityList.size(); i++) {
                 writeBuff.write("\nNombre de usuario: " + UsersEntityList.get(i).getUsername() +
-                        "\nfecha de nacimiento: " + UsersEntityList.get(i).getBirthday() +
-                        "\nnumero de telefono: " + UsersEntityList.get(i).getPhoneNumber() +
-                        "\nemail: " + UsersEntityList.get(i).getEmail() +
-                        "\ncontraseña:\n" + UsersEntityList.get(i).getPassword());
+                        "\nFecha de nacimiento: " + UsersEntityList.get(i).getBirthday() +
+                        "\nNúmero de teléfono: " + UsersEntityList.get(i).getPhoneNumber() +
+                        "\nEmail: " + UsersEntityList.get(i).getEmail() +
+                        "\nContraseña: " + UsersEntityList.get(i).getPassword());
             }
 
-            System.out.println("\nUsuario añadido exitosamente\n");
+            System.out.println("\n¡Usuario añadido exitosamente!\n");
             writeBuff.close();
         } catch (Exception e) {
 
@@ -88,21 +90,22 @@ public class AdminEntityController {
 
     public void updateUserEntity() {
 
-        System.out.println("ingrese el userName: ");
-        user.setUsername(sc.next());
-        System.out.println("ingrese el nombre del usuario: ");
-        user.setName(sc.next());
-        System.out.println("ingrese la fecha de nacimiento: ");
-        user.setBirthday(LocalDate.parse(sc.next()));
-        System.out.println("ingrese el numero de telefono: ");
-        user.setPhoneNumber(sc.next());
-        System.out.println("ingrese el email del usuario: ");
-        user.setEmail(sc.next());
-        System.out.println("ingrese la contraseña: ");
-        user.setPassword(sc.next());
-        System.out.println("ingrese el rol del usuario: ");
+        sc.nextLine();
+        System.out.println("Ingrese el userName: ");
+        user.setUsername(sc.nextLine());
+        System.out.println("Ingrese el nombre de la persona: ");
+        user.setName(sc.nextLine());
+        System.out.println("Ingrese la fecha de nacimiento: ");
+        user.setBirthday(LocalDate.parse(sc.nextLine()));
+        System.out.println("Ingrese el número de teléfono: ");
+        user.setPhoneNumber(sc.nextLine());
+        System.out.println("Ingrese el email del usuario: ");
+        user.setEmail(sc.nextLine());
+        System.out.println("Ingrese la contraseña: ");
+        user.setPassword(sc.nextLine());
+        System.out.println("Ingrese el rol del usuario: ");
         user.setRole(sc.nextInt());
-        System.out.println("El registro fue actualizado exitosamente\n");
+        System.out.println("\n¡El registro fue actualizado exitosamente!\n");
 
     }
 
@@ -112,9 +115,9 @@ public class AdminEntityController {
 
             if (id == UsersEntityList.get(i).getId()) {
                 UsersEntityList.remove(i);
-                System.out.println("Usuario eliminado exitosamente\n");
+                System.out.println("\n¡Usuario eliminado exitosamente!\n");
             } else {
-                System.out.println("No se encuentro el numero de usuario\n");
+                System.out.println("\n¡No se encontró el numero de usuario!\n");
             }
         }
 

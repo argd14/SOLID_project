@@ -20,9 +20,9 @@ public class AppointmentBookController {
 
     public void addAppointmentEntity(int id, String name) {
         System.out.println("\nIngrese los datos de la cita");
-        System.out.println("Ingrese Fecha");
+        System.out.println("Ingrese Fecha:");
         LocalDate d = LocalDate.parse(sc.next());
-        System.out.println("Ingrese Hora");
+        System.out.println("Ingrese Hora:");
         LocalTime t = LocalTime.parse(sc.next());
 
         appointment = new AppointmentEntity(id, name, d, t);
@@ -56,11 +56,11 @@ public class AppointmentBookController {
 
     public void updateAppointmentEntity() {
 
-        System.out.println("Ingrese nueva fecha");
+        System.out.println("Ingrese nueva fecha:");
         appointment.setDate(LocalDate.parse(sc.next()));
-        System.out.println("Ingrese nueva hora");
+        System.out.println("Ingrese nueva hora:");
         appointment.setTime(LocalTime.parse(sc.next()));
-        System.out.println("Cita actualizada exitosamente");
+        System.out.println("¡Cita actualizada exitosamente!");
 
     }
 
@@ -121,7 +121,7 @@ public class AppointmentBookController {
             if (date.equals(appointments.get(i).getDate())) {
                 appointments.remove(i);
             } else {
-                System.out.println("numero de cita no encontrado");
+                System.out.println("Número de cita no encontrado");
             }
         }
 

@@ -5,19 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-
 public class PrescriptionEntity {
     private int id;
     private String medicineName;
     private String dosage;
-
-
-    public PrescriptionEntity(int idPatient, String medicine, String dosage) {
-        this.id =idPatient;
-        this.medicineName = medicine;
-        this.dosage = dosage;
-    }
 
     @Override
     public String toString() {

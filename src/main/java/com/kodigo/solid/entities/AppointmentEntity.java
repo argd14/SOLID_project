@@ -12,28 +12,17 @@ import java.time.format.DateTimeFormatter;
 @Data
 @NoArgsConstructor
 public class AppointmentEntity implements Serializable {
-  private int patientId;
+  private int Id;
   private LocalDate date;
   private LocalTime time;
   private LocalDateTime datetime;
 
-  public AppointmentEntity(int id, String name, LocalDate d, LocalTime t) {
-
-    this.patientId = id;
+  public AppointmentEntity(int id, LocalDate d, LocalTime t) {
+    this.Id = id;
     this.date = d;
     this.time = t;
     this.datetime = date.atTime(time);
   }
-  public void AppointmentEntity2(int id, LocalDate d, LocalTime t) {
-
-    this.patientId = id;
-    this.date = d;
-    this.time = t;
-    this.datetime = date.atTime(time);
-  }
-
-
-
 
   public String getDateString()
   {
@@ -44,7 +33,7 @@ public class AppointmentEntity implements Serializable {
   @Override
   public String toString()
   {
-    return ( "\nPaciente: " + this.patientId + ".\n" + "Fecha: " + this.getDateString());
+    return ( "\nPaciente: " + this.Id + ".\n" + "Fecha: " + this.getDateString());
   }
 
 }

@@ -1,18 +1,19 @@
 package com.kodigo.solid.views;
 
-import com.kodigo.solid.commands.AdminEntityController;
-import lombok.AllArgsConstructor;
+import com.kodigo.solid.controllers.AbstractAdminController;
+import com.kodigo.solid.controllers.InterfaceAdminController;
+import com.kodigo.solid.services.auth.AuthServiceImplementation;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 import java.util.Scanner;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class MenuAdminEntity {
 
     private Boolean exit = false;
-    private AdminEntityController userController = new AdminEntityController();
+    private AbstractAdminController AbsUserController;
+    private InterfaceAdminController IntUserController;
+    private AuthServiceImplementation auth;
     private int option;
     private int id;
     private Scanner sc = new Scanner(System.in);
@@ -36,68 +37,66 @@ public class MenuAdminEntity {
             System.out.print("Ingrese la opción que desea: ");
             option = sc.nextInt();
 
-           switch(option){
+            switch(option){
 
-               case 1:
-                   System.out.println("=============================\n");
-                   System.out.println("-------AGREGAR NUEVO USUARIO-------");
-                   System.out.println("===================================");
-                   userController.addUserEntity();
-                   break;
-               case 2:
-                   System.out.println("==============================\n");
-                   System.out.println("----------ACTUALIZAR USUARIO-----------");
-                   System.out.println("=======================================");
-                   System.out.println("Ingrese el ID del usuario a actualizar: ");
-                   id = sc.nextInt();
-                   System.out.println("¿Desea actualizar el registro? --> 1 - si / 0 - Regresar");
-                   option = sc.nextInt();
-                   if(option == 1) {
-                           for (int i = 0; i < userController.getUsersEntityList().size(); i++) {
-                               if (id == userController.getUsersEntityList().get(i).getId()) {
-                                   userController.updateUserEntity();
-                               } else if (option == 0) {
-                                   viewMenuAdmin();
-                               }else {
-                                 exit = true;
-                               }
-                           }
-                       }
+                case 1:
+                    System.out.println("=============================\n");
+                    System.out.println("-------AGREGAR NUEVO USUARIO-------");
+                    System.out.println("===================================");
+                    IntUserController.addEntity();
+                    break;
+                case 2:
+                    System.out.println("==============================\n");
+                    System.out.println("----------ACTUALIZAR USUARIO-----------");
+                    System.out.println("=======================================");
+                    System.out.println("Ingrese el ID del usuario a actualizar: ");
+                    id = sc.nextInt();
 
-                   break;
-               case 3:
-                   System.out.println("==============================\n");
-                   System.out.println("-----------ELIMINAR USUARIO----------");
-                   System.out.println("=====================================");
-                   System.out.println("Ingrese el ID del usuario a eliminar: ");
-                   id = sc.nextInt();
-                   userController.deleteUserEntity(id);
-                   break;
-               case 4:
-                   System.out.println("==============================\n");
-                   System.out.println("-------MOSTRAR USUARIOS-------");
-                   System.out.println("==============================");
-                   userController.showUserEntity();
-                   System.out.println("\n0 - Regresar");
-                   option = sc.nextInt();
-                     if(option == 0){
-                         viewMenuAdmin();
-                     }else{
-                         exit = true;
-                     }
+                        for (int i = 0; i < AbsUserController.getUsersEntityList().size(); i++) {
+                            if (id == AbsUserController.getUsersEntityList().get(i).getId()) {
+                                IntUserController.updateEntity();
+                            } else{
+                                viewMenuAdmin();
+                            }
 
-                   break;
-               case 5:
-                   //Reporte citas
-                   break;
-               case 6:
-                   //Reporte pagos
-                   break;
-               case 0:
-                   exit = true;
-                   break;
 
-           }
+                        }
+
+
+                    break;
+                case 3:
+                    System.out.println("==============================\n");
+                    System.out.println("-----------ELIMINAR USUARIO----------");
+                    System.out.println("=====================================");
+                    System.out.println("Ingrese el ID del usuario a eliminar: ");
+                    id = sc.nextInt();
+                    IntUserController.deleteEntity(id);
+                    break;
+                case 4:
+                    System.out.println("==============================\n");
+                    System.out.println("-------MOSTRAR USUARIOS-------");
+                    System.out.println("==============================");
+                    IntUserController.showAllEntity();
+                    System.out.println("\n0 - Regresar");
+                    option = sc.nextInt();
+                    if(option == 0){
+                        viewMenuAdmin();
+                    }else{
+                        exit = true;
+                    }
+
+                    break;
+                case 5:
+                    //Reporte citas
+                    break;
+                case 6:
+                    //Reporte pagos
+                    break;
+                case 0:
+                    auth.userLogin();
+                    break;
+
+            }
         }
     }
 }

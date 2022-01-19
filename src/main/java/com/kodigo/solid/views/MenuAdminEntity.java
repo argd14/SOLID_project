@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Scanner;
+import com.kodigo.solid.utils.menuMethods.adminMenu;
 
 @Data
 @AllArgsConstructor
@@ -12,27 +13,17 @@ import java.util.Scanner;
 public class MenuAdminEntity {
 
     private Boolean exit = false;
-    private AdminEntityController userController = new AdminEntityController();
     private int option;
     private int id;
+    private AdminEntityController userController = new AdminEntityController();
     private Scanner sc = new Scanner(System.in);
 
     public void viewMenuAdmin()
     {
         while (!exit) {
-            System.out.println("------MENU ADMINISTRADOR------");
-            System.out.println("==============================");
-            System.out.println("------GESTION DE USUARIOS------");
-            System.out.println(" 1 - Crear un nuevo usuario ");
-            System.out.println(" 2 - Modificar usuario ");
-            System.out.println(" 3 - Eliminar usuario ");
-            System.out.println("==============================");
-            System.out.println("------GESTION DE REPORTES------");
-            System.out.println(" 4 - Reporte usuarios ");
-            System.out.println(" 5 - Reporte citas ");
-            System.out.println(" 6 - Reporte pagos ");
-            System.out.println(" 0 - Salir ");
-            System.out.print("Ingrese la opción que desea: ");
+
+            adminMenu.printAdminMenu();
+
             option = sc.nextInt();
 
            switch(option){

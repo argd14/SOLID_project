@@ -132,32 +132,7 @@ public class AdminEntityController {
     }
 
     public void showUserEntity() {
-
-      /*  try {
-            File directory = new File(".");
-            File fileRead = new File(directory, "fileUser.text");
-
-            FileReader read = new FileReader(fileRead);
-            BufferedReader readBuff = new BufferedReader(read);
-            List<UserEntity> ListBuff = new LinkedList<>();
-            String linea = null;
-
-
-            for (int i = 0; i < UsersEntityList.size(); i++) {
-
-                if (id == UsersEntityList.get(i).getId()) {
-                    System.out.println(UsersEntityList.get(i));
-
-                }
-
-
-            }
-
-        }catch(Exception e){
-
-        }*/
         try {
-
             BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.txt\\"));
             String temp = "";
             String bfRead;

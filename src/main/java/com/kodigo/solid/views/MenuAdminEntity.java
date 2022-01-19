@@ -20,7 +20,6 @@ public class MenuAdminEntity {
     public void viewMenuAdmin()
     {
         while (!exit) {
-
             System.out.println("------MENU ADMINISTRADOR------");
             System.out.println("==============================");
             System.out.println("------GESTION DE USUARIOS------");

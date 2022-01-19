@@ -28,7 +28,6 @@ public class DoctorEntityController {
         PrescriptionEntity Prescription = new PrescriptionEntity(this.idPatient,this.medicine, dosage);
         prescriptionsList.add(Prescription);
 
-
     }
 
     public void showPrescription() {

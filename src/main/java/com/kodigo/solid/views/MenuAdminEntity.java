@@ -1,102 +1,92 @@
 package com.kodigo.solid.views;
 
-import com.kodigo.solid.controllers.AbstractAdminController;
-import com.kodigo.solid.controllers.InterfaceAdminController;
-import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.commands.AdminEntityController;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 import java.util.Scanner;
+import com.kodigo.solid.utils.menuMethods.adminMenu;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MenuAdminEntity {
 
     private Boolean exit = false;
-    private AbstractAdminController AbsUserController;
-    private InterfaceAdminController IntUserController;
-    private AuthServiceImplementation auth;
     private int option;
     private int id;
+    private AdminEntityController userController = new AdminEntityController();
     private Scanner sc = new Scanner(System.in);
 
     public void viewMenuAdmin()
     {
         while (!exit) {
 
-            System.out.println("-----MENU ADMINISTRADOR------");
-            System.out.println("=============================");
-            System.out.println("-----GESTIÓN DE USUARIOS-----");
-            System.out.println(" 1 - Crear un nuevo usuario ");
-            System.out.println(" 2 - Modificar usuario ");
-            System.out.println(" 3 - Eliminar usuario ");
-            System.out.println("=============================");
-            System.out.println("-----GESTIÓN DE REPORTES-----");
-            System.out.println(" 4 - Reporte usuarios ");
-            System.out.println(" 5 - Reporte citas ");
-            System.out.println(" 6 - Reporte pagos ");
-            System.out.println(" 0 - Salir ");
-            System.out.print("Ingrese la opción que desea: ");
+            adminMenu.printAdminMenu();
+
             option = sc.nextInt();
 
-            switch(option){
+           switch(option){
 
-                case 1:
-                    System.out.println("=============================\n");
-                    System.out.println("-------AGREGAR NUEVO USUARIO-------");
-                    System.out.println("===================================");
-                    IntUserController.addEntity();
-                    break;
-                case 2:
-                    System.out.println("==============================\n");
-                    System.out.println("----------ACTUALIZAR USUARIO-----------");
-                    System.out.println("=======================================");
-                    System.out.println("Ingrese el ID del usuario a actualizar: ");
-                    id = sc.nextInt();
+               case 1:
+                   System.out.println("==============================");
+                   System.out.println("-------AGREGAR USUARIO-------");
+                   userController.addUserEntity();
+                   break;
+               case 2:
+                   System.out.println("==============================");
+                   System.out.println("-------ACTUALIZAR USUARIO-----");
+                   System.out.println("Ingrese el ID del usuario a actualizar: ");
+                   id = sc.nextInt();
+                   System.out.println("Desea actualizar el registro?--> 1 - si / 0 - Regresar");
+                   option = sc.nextInt();
+                       if(option == 1) {
+                           for (int i = 0; i < userController.getUsersEntityList().size(); i++) {
+                               if (id == userController.getUsersEntityList().get(i).getId()) {
+                                   userController.updateUserEntity();
+                               } else if (option == 0) {
+                                   viewMenuAdmin();
+                               }else {
+                                 exit = true;
+                               }
+                           }
+                       }
 
-                        for (int i = 0; i < AbsUserController.getUsersEntityList().size(); i++) {
-                            if (id == AbsUserController.getUsersEntityList().get(i).getId()) {
-                                IntUserController.updateEntity();
-                            } else{
-                                viewMenuAdmin();
-                            }
+                   break;
+               case 3:
+                   System.out.println("==============================");
+                   System.out.println("--------ELIMINAR USUARIO------");
+                   System.out.println("Ingrese el ID del usuario a Eliminar: ");
+                   id = sc.nextInt();
+                   userController.deleteUserEntity(id);
+                   break;
+               case 4:
+                   System.out.println("==============================");
+                   System.out.println("-------MOSTRAR USUARIOS-------");
+                   userController.showUserEntity();
+                   System.out.println("1 - Buscar usuario por ID\n" + "0 - Regresar");
+                   option = sc.nextInt();
+                   System.out.println("Ingrese el ID del usuario a ver: ");
+                   id = sc.nextInt();
+                   if(option == 1){
+                      // userController.showUserEntity(id);
+                   }else if(option == 0){
+                       this.viewMenuAdmin();
+                   }else{
+                       exit = true;
+                   }
+                   break;
+               case 5:
+                   //Reporte citas
+                   break;
+               case 6:
+                   //Reporte pagos
+                   break;
+               case 0:
+                   exit = true;
+                   break;
 
-
-                        }
-
-
-                    break;
-                case 3:
-                    System.out.println("==============================\n");
-                    System.out.println("-----------ELIMINAR USUARIO----------");
-                    System.out.println("=====================================");
-                    System.out.println("Ingrese el ID del usuario a eliminar: ");
-                    id = sc.nextInt();
-                    IntUserController.deleteEntity(id);
-                    break;
-                case 4:
-                    System.out.println("==============================\n");
-                    System.out.println("-------MOSTRAR USUARIOS-------");
-                    System.out.println("==============================");
-                    IntUserController.showAllEntity();
-                    System.out.println("\n0 - Regresar");
-                    option = sc.nextInt();
-                    if(option == 0){
-                        viewMenuAdmin();
-                    }else{
-                        exit = true;
-                    }
-
-                    break;
-                case 5:
-                    //Reporte citas
-                    break;
-                case 6:
-                    //Reporte pagos
-                    break;
-                case 0:
-                    auth.userLogin();
-                    break;
-
-            }
+           }
         }
     }
 }

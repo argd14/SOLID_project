@@ -1,4 +1,4 @@
-package com.kodigo.solid.controllers;
+package com.kodigo.solid.commands;
 
 import com.kodigo.solid.entities.AdminEntity;
 import com.kodigo.solid.entities.DoctorEntity;
@@ -7,23 +7,40 @@ import com.kodigo.solid.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+
+import static org.apache.pdfbox.pdmodel.font.PDType1Font.*;
+import static org.apache.pdfbox.pdmodel.font.Standard14Fonts.FontName.TIMES_BOLD;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminEntityController extends AbstractAdminController {
+public class AdminEntityController {
 
+    private ArrayList<AdminEntity> AdminEntityList = new ArrayList<>();
+    private ArrayList<DoctorEntity> DoctorEntityList = new ArrayList<>();
+    private ArrayList<PatientEntity> PatientEntityList = new ArrayList<>();
+    private ArrayList<UserEntity> UsersEntityList = new ArrayList<>();
     private UserEntity user;
+    Scanner sc = new Scanner(System.in);
     private int rol;
-    private Scanner sc = new Scanner(System.in);
 
-    @Override
-    public void addEntity() {
+
+    public void addUserEntity() {
+
         System.out.println("--------INGRESANDO DATOS DEL USUARIO-----");
-        System.out.println("ingrese el id del Usuario: ");
+        System.out.println("ingrese el id del doctor: ");
         int id = sc.nextInt();
         System.out.println("ingrese el userName: ");
         String username = sc.next();
@@ -42,12 +59,11 @@ public class AdminEntityController extends AbstractAdminController {
 
         user = new UserEntity(id, username, name, date, phone, email, password, rol);
         UsersEntityList.add(user);
-        writeFile();
+        fileWrite();
 
         if (this.rol == 1) {
             AdminEntity admin = new AdminEntity(id, username, name, date, phone, email, password, rol);
             AdminEntityList.add(admin);
-
         } else if (this.rol == 2) {
             DoctorEntity doctor = new DoctorEntity(id, username, name, date, phone, email, password, rol);
             DoctorEntityList.add(doctor);
@@ -57,8 +73,32 @@ public class AdminEntityController extends AbstractAdminController {
         }
     }
 
-    @Override
-    public void updateEntity() {
+    public void fileWrite() {
+        try {
+
+            File directory = new File(".");
+            File fileUser = new File(directory, "fileUsers.text");
+            FileWriter write = new FileWriter(fileUser);
+            BufferedWriter writeBuff = new BufferedWriter(write);
+
+            for (int i = 0; i < UsersEntityList.size(); i++) {
+                writeBuff.write("\nNombre de usuario: " + UsersEntityList.get(i).getUsername() +
+                        "\nfecha de nacimiento: " + UsersEntityList.get(i).getBirthday() +
+                        "\nnumero de telefono: " + UsersEntityList.get(i).getPhoneNumber() +
+                        "\nemail: " + UsersEntityList.get(i).getEmail() +
+                        "\ncontraseña: " + UsersEntityList.get(i).getPassword());
+            }
+
+            System.out.println("\nUsuario añadido exitosamente\n");
+            writeBuff.close();
+        } catch (Exception e) {
+
+            System.out.println("Error -->" + e.getMessage());
+        }
+    }
+
+    public void updateUserEntity() {
+
         System.out.println("ingrese el userName: ");
         user.setUsername(sc.next());
         System.out.println("ingrese el nombre del usuario: ");
@@ -77,9 +117,10 @@ public class AdminEntityController extends AbstractAdminController {
 
     }
 
-    @Override
-    public void deleteEntity(int id) {
-        for (int i = 0; i < UsersEntityList.size(); i++) {
+    public void deleteUserEntity(int id) {
+
+        for (int i = 0; i < getUsersEntityList().size(); i++) {
+
             if (id == UsersEntityList.get(i).getId()) {
                 UsersEntityList.remove(i);
                 System.out.println("Usuario eliminado exitosamente\n");
@@ -90,47 +131,19 @@ public class AdminEntityController extends AbstractAdminController {
 
     }
 
-    @Override
-    public void showAllEntity() {
+    public void showUserEntity() {
         try {
-            String linea;
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.text"));
-            linea = bf.readLine();
-            while (linea != null) {
-                System.out.println(linea);
-                linea = bf.readLine();
+            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.txt\\"));
+            String temp = "";
+            String bfRead;
+            while ((bfRead = bf.readLine()) != null) {
+                temp = temp + bfRead;
             }
-
+            System.out.println(temp);
         } catch (Exception e) {
 
             System.err.println("error -->" + e.getMessage());
         }
-    }
 
-
-
-    @Override
-    public void writeFile() {
-        try {
-
-            File directory = new File(".");
-            File fileUser = new File(directory, "fileUsers.text");
-            FileWriter write = new FileWriter(fileUser);
-            BufferedWriter writeBuff = new BufferedWriter(write);
-
-            for (int i = 0; i < UsersEntityList.size(); i++) {
-                writeBuff.write("\nNombre de usuario: " + UsersEntityList.get(i).getUsername() +
-                        "\nfecha de nacimiento: " + UsersEntityList.get(i).getBirthday() +
-                        "\nnumero de telefono: " + UsersEntityList.get(i).getPhoneNumber() +
-                        "\nemail: " + UsersEntityList.get(i).getEmail() +
-                        "\ncontraseña:\n" + UsersEntityList.get(i).getPassword());
-            }
-
-            System.out.println("\nUsuario añadido exitosamente\n");
-            writeBuff.close();
-        } catch (Exception e) {
-
-            System.out.println("Error -->" + e.getMessage());
-        }
     }
 }

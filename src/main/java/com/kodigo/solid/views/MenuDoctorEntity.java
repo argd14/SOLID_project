@@ -15,9 +15,9 @@ public class MenuDoctorEntity {
     //dependencia
     private final DoctorPrescriptionController DoctorEntity;
     private final AppointmentBookController appointmentBook;
+    private final AuthServiceImplementation auth;
 
 
-    private AuthServiceImplementation auth;
 
     private boolean exit = false;
     private String option;
@@ -77,6 +77,7 @@ public class MenuDoctorEntity {
                                 int id = sc.nextInt();
                                 appointmentBook.deleteAppointment(id);
                                 System.out.println("\n0 - Regresar");
+                                sc.nextInt();
                                 back(sc.nextLine());
                             }
 

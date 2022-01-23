@@ -19,8 +19,9 @@ public class AdminEntityController extends AbstractAdminController {
     //dependencia
     FakeUsersDb fakeUsers = new FakeUsersDb();
 
-    //metodo carga los datos inicales de fakeDB
-    public void loadData() {
+    //metodo carga los datos inicales de fakeDB //metodo nuevo
+    @Override
+    public void loadDatabase() {
         UsersEntityList = fakeUsers.userDatabase();
     }
 
@@ -51,6 +52,8 @@ public class AdminEntityController extends AbstractAdminController {
 
         System.out.println("--------INGRESANDO DATOS DEL USUARIO-----");
         System.out.println("ingrese el id del Usuario: ");
+
+       @NotNull
         Long id = sc.nextLong();
         System.out.println("ingrese el userName: ");
         String username = sc.next();

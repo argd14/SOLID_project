@@ -16,9 +16,8 @@ public class MenuPatientEntity {
 
     //dependencia
     private final AppointmentBookController appointmentBook;
-    private AuthServiceImplementation auth;
     private final PaymentEntityController paymentController;
-
+    private final AuthServiceImplementation auth;
 
     private  Long idAuth;
     private  String userAuth;
@@ -33,7 +32,7 @@ public class MenuPatientEntity {
         System.out.println("---------MENÚ PACIENTE---------");
         System.out.println("===============================");
         System.out.println("--- 1 - GESTIÓN DE CITAS ------");
-        System.out.println("-Crear cita\n-Actualizar cita\n-Eliminar cita\n-Mostrar citas");
+        System.out.println("-Crear cita\n-Actualizar cita\n-Eliminar cita");
         System.out.println("===============================");
         System.out.println("--- 2 - GESTIÓN DE PAGOS ------");
         System.out.println("-Historial de Pagos\n-Buscar pago \n-Eliminar pago");
@@ -50,7 +49,7 @@ public class MenuPatientEntity {
                     System.out.println("===============================");
                     System.out.println("---------GESTIÓN CITAS---------");
                     System.out.println("===============================");
-                    System.out.println("1. Nueva Cita\n2. Actualizar Cita\n3. Eliminar cita\n4. Mostras citas\n0. Regresar");
+                    System.out.println("1. Nueva Cita\n2. Actualizar Cita\n3. Eliminar cita\n0. Regresar");
                     System.out.print("Ingrese la opción que desea: ");
                     option = sc.nextLine();
                     switch (option) {
@@ -73,11 +72,7 @@ public class MenuPatientEntity {
                             System.out.println("\n0 - Regresar");
                             back(sc.nextLine());
                             break;
-                        case "4":
-                            appointmentBook.listAllAppointments(idAuth);
-                            System.out.println("\n0 - Regresar");
-                            back(sc.nextLine());
-                            break;
+
                         case "0":
                             viewMenuPatient();
                             break;
@@ -127,7 +122,10 @@ public class MenuPatientEntity {
                     break;
 
                 case "3":
-                    appointmentBook.listAllAppointments(this.idAuth);
+                    System.out.println("-----Citas agendadas-----");
+                    appointmentBook.listAllAppointments(idAuth);
+                    System.out.println("\n0 - Regresar");
+                    back(sc.nextLine());
                     break;
 
                 case "0":

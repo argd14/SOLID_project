@@ -7,6 +7,7 @@ import com.kodigo.solid.controllers.PaymentEntityController;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +18,6 @@ import java.util.Scanner;
 public class MenuAdminEntity {
 
     private Boolean exit = false;
-    private AuthServiceImplementation auth;
     private String option;
     private Long id;
     private Scanner sc = new Scanner(System.in);
@@ -26,6 +26,7 @@ public class MenuAdminEntity {
     private final AdminEntityController adminEntityController;
     private final PaymentEntityController paymentEntityController;
     private final AppointmentBookController appointmentBook;
+    private final AuthServiceImplementation auth;
     /////////////////////////////////
 
 
@@ -121,7 +122,9 @@ public class MenuAdminEntity {
                     System.out.println("\n0 - Regresar");
                     back(sc.nextLine());
                     break;
+
                 case "0":
+                    exit = true;
                     auth.userLogin();
                     break;
                 default:

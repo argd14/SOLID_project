@@ -13,9 +13,9 @@ import java.util.Random;
 @AllArgsConstructor
 @Builder
 public class AppointmentEntity implements Serializable {
+
     @Generated
     private int id;
-
     private Long idPatient;
     private String namePatient;
     private Long idDoctor;
@@ -47,6 +47,10 @@ public class AppointmentEntity implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
         return datetime.format(formatter);
     }
+    public String getTimeString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        return time.format(formatter);
+    }
 
     @Override
     public String toString() {
@@ -54,7 +58,7 @@ public class AppointmentEntity implements Serializable {
                 "\nNombre paciente: " + this.namePatient +
                 "\nNombre doctor: " + nameDoctor +
                 "\nFecha: " + this.datetime +
-                "\nHora: " + this.time + "\n");
+                "\nHora: " + getTimeString()+ "\n");
     }
 
 }

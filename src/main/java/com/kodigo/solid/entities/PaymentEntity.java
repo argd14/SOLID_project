@@ -21,20 +21,11 @@ public class PaymentEntity {
     private String concept;
     private double amount;
 
-    public PaymentEntity(Long id, String name, Long idUser,String concept, double amount) {
-        this.id = id;
-        this.name = name;
-        this.idUser = idUser;
-        this.datetime = LocalDate.from(LocalDateTime.now());
-        this.concept = concept;
-        this.amount = amount;
-    }
 
     @Override
     public String toString() {
         return "\nRegistro de pago: " +
                 "\nnumero de pago "+id+
-                "\nid cliente " + idUser +
                 "\nnombre cliente "+ name+
                 "\nfecha: " + datetime +
                 "\nconcepto: " + concept +

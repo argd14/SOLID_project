@@ -36,7 +36,8 @@ public class PaymentEntityController extends AbstractPaymentController {
     //dependencia
     FakePaymentsDb paymentDb = new FakePaymentsDb();
 
-    public void loadData(){
+    @Override
+    public void loadDatabase(){
         payments = paymentDb.paymentDatabase();
     }
     @Override

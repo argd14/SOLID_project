@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class FakeAppointmentDb {
 
     public ArrayList<AppointmentEntity> appointmentDatabase(){
+       
         ArrayList<AppointmentEntity> appointments = new ArrayList<>();
         AppointmentEntity appointment1 = AppointmentEntity.builder()
                 .id(2)
@@ -17,7 +18,7 @@ public class FakeAppointmentDb {
                 .nameDoctor("Dr. Rivas")
                 .namePatient("Roxy")
                 .datetime(LocalDate.ofEpochDay(2020-12-12))
-                .time(LocalTime.ofSecondOfDay(12-12))
+                .time(LocalTime.now())
                 .build();
         appointments.add(appointment1);
 
@@ -28,7 +29,7 @@ public class FakeAppointmentDb {
                 .nameDoctor("Dr. Rivas")
                 .namePatient("Juan")
                 .datetime(LocalDate.ofEpochDay(2020-12-12))
-                .time(LocalTime.ofSecondOfDay(20-12))
+                .time(LocalTime.now())
                 .build();
         appointments.add(appointment2);
 

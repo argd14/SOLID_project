@@ -21,7 +21,8 @@ public class DoctorPrescriptionController extends AbstractDoctorController {
 
     private Scanner sc = new Scanner(System.in);
 
-    public void loadData() {
+    @Override
+    public void loadDatabase() {
         prescriptionsList = prescriptionDb.prescriptiontDatabase();
     }
 

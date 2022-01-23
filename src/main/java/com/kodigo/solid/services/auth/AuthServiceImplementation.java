@@ -16,30 +16,30 @@ import java.util.Scanner;
 @AllArgsConstructor
 public class AuthServiceImplementation {
 
-    //variables globales
+
     private Integer userRol;
     private Long idAuth;
     private String userAuth;
     private Boolean verified = false;
     Scanner sc = new Scanner(System.in);
 
-    //dependencia
     private AdminEntityController adminController = new AdminEntityController();
     private DoctorPrescriptionController doctorController = new DoctorPrescriptionController();
     private PaymentEntityController paymentController = new PaymentEntityController();
     private AppointmentBookController appointmentBookController = new AppointmentBookController();
+    private AuthServiceImplementation auth;
 
-    //dependencia como argumento para no generar nueva instancia
-    private MenuAdminEntity adminMenu = new MenuAdminEntity(adminController, paymentController, appointmentBookController);
-    private MenuDoctorEntity doctorMenu = new MenuDoctorEntity(doctorController, appointmentBookController);
-    private MenuPatientEntity patientMenu = new MenuPatientEntity(appointmentBookController, paymentController);
+
+    private MenuAdminEntity adminMenu = new MenuAdminEntity(adminController, paymentController, appointmentBookController,auth);
+    private MenuDoctorEntity doctorMenu = new MenuDoctorEntity(doctorController, appointmentBookController,auth);
+    private MenuPatientEntity patientMenu = new MenuPatientEntity(appointmentBookController, paymentController,auth);
 
 
     //Metodos o funcionalidades
     public void userLogin() {
-        adminController.loadData();
-        doctorController.loadData();
-        paymentController.loadData();
+        adminController.loadDatabase();
+        doctorController.loadDatabase();
+        paymentController.loadDatabase();
         appointmentBookController.loadDatabase();
 
         try {
@@ -81,9 +81,12 @@ public class AuthServiceImplementation {
             }
         } catch (
                 Exception e) {
-            System.err.println(e.getMessage());
-            userLogin();
-
+            System.out.println(e.getMessage());
+            try {
+                userLogin();
+            }catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
         }
 
 

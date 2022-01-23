@@ -1,25 +1,35 @@
 package com.kodigo.solid.views;
 
-import com.kodigo.solid.controllers.AbstractAdminController;
-import com.kodigo.solid.controllers.InterfaceAdminController;
+import com.kodigo.solid.controllers.AdminEntityController;
+
+import com.kodigo.solid.controllers.AppointmentBookController;
+import com.kodigo.solid.controllers.PaymentEntityController;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 @Data
+@RequiredArgsConstructor
 public class MenuAdminEntity {
 
     private Boolean exit = false;
-    private AbstractAdminController AbsUserController;
-    private InterfaceAdminController IntUserController;
     private AuthServiceImplementation auth;
-    private int option;
-    private int id;
+    private String option;
+    private Long id;
     private Scanner sc = new Scanner(System.in);
 
-    public void viewMenuAdmin()
-    {
+    ////////////////////////////////
+    private final AdminEntityController adminEntityController;
+    private final PaymentEntityController paymentEntityController;
+    private final AppointmentBookController appointmentBook;
+    /////////////////////////////////
+
+
+    public void viewMenuAdmin() {
         while (!exit) {
 
             System.out.println("-----MENU ADMINISTRADOR------");
@@ -35,68 +45,99 @@ public class MenuAdminEntity {
             System.out.println(" 6 - Reporte pagos ");
             System.out.println(" 0 - Salir ");
             System.out.print("Ingrese la opción que desea: ");
-            option = sc.nextInt();
+            option = sc.nextLine();
 
-            switch(option){
+            switch (option) {
 
-                case 1:
+                case "1":
                     System.out.println("=============================\n");
                     System.out.println("-------AGREGAR NUEVO USUARIO-------");
                     System.out.println("===================================");
-                    IntUserController.addEntity();
+                    adminEntityController.createUser();
                     break;
-                case 2:
+                case "2":
                     System.out.println("==============================\n");
                     System.out.println("----------ACTUALIZAR USUARIO-----------");
                     System.out.println("=======================================");
                     System.out.println("Ingrese el ID del usuario a actualizar: ");
-                    id = sc.nextInt();
-
-                        for (int i = 0; i < AbsUserController.getUsersEntityList().size(); i++) {
-                            if (id == AbsUserController.getUsersEntityList().get(i).getId()) {
-                                IntUserController.updateEntity();
-                            } else{
-                                viewMenuAdmin();
-                            }
-
-
-                        }
-
-
+                    id = sc.nextLong();
+                    adminEntityController.updateUser(adminEntityController.getUser(id));
                     break;
-                case 3:
+                case "3":
                     System.out.println("==============================\n");
                     System.out.println("-----------ELIMINAR USUARIO----------");
                     System.out.println("=====================================");
                     System.out.println("Ingrese el ID del usuario a eliminar: ");
-                    id = sc.nextInt();
-                    IntUserController.deleteEntity(id);
+                    id = sc.nextLong();
+                    adminEntityController.deleteUser(id);
                     break;
-                case 4:
+                case "4":
                     System.out.println("==============================\n");
                     System.out.println("-------MOSTRAR USUARIOS-------");
-                    System.out.println("==============================");
-                    IntUserController.showAllEntity();
-                    System.out.println("\n0 - Regresar");
-                    option = sc.nextInt();
-                    if(option == 0){
-                        viewMenuAdmin();
-                    }else{
-                        exit = true;
+                    System.out.println("1-Mostrar todos los usuarios");
+                    System.out.println("2-Buscar usuarios por rol");
+                    System.out.println("2-Buscar usuario por ID");
+                    option = sc.nextLine();
+                    switch (option) {
+
+                        case "1":
+                            adminEntityController.lisAllUsers();
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
+                            break;
+                        case "2":
+                            System.out.println("Ingrese el rol a buscar");
+                            int rol = sc.nextInt();
+                            adminEntityController.findByRol(rol);
+                            System.out.println("\n0 - Regresar");
+                            sc.nextLine();
+                            back(sc.nextLine());
+                            sc.nextLine();
+                            break;
+                        case "3":
+                            System.out.println("Ingrese el ID del usuario");
+                            Long id = sc.nextLong();
+                            System.out.println(adminEntityController.getUser(id));
+                            System.out.println("\n0 - Regresar");
+                            sc.nextLine();
+                            back(sc.nextLine());
+                            break;
+                        default:
+                            System.out.println("Opcion invalida, Ingrese una option correcta\n");
+                            break;
                     }
+                case "5":
+                    System.out.println("==============================\n");
+                    System.out.println("-------CITAS AGENDADAS-------");
+                    System.out.println(appointmentBook.getAppointments());
+                    System.out.println("\n0 - Regresar");
+                    back(sc.nextLine());
 
                     break;
-                case 5:
-                    //Reporte citas
+                case "6":
+                    System.out.println("==============================\n");
+                    System.out.println("-------PAGOS EFECTUADOS-------");
+                    System.out.println(paymentEntityController.getPayments());
+                    System.out.println("\n0 - Regresar");
+                    back(sc.nextLine());
                     break;
-                case 6:
-                    //Reporte pagos
-                    break;
-                case 0:
+                case "0":
                     auth.userLogin();
+                    break;
+                default:
+                    System.out.println("Opcion invalida, Ingrese una option correcta\n");
                     break;
 
             }
+        }
+    }
+
+    //Metodo nuevo para regresar
+    public void back(String back) {
+        if (back == "0") {
+            viewMenuAdmin();
+        } else {
+            viewMenuAdmin();
         }
     }
 }

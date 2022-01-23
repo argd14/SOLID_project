@@ -1,82 +1,120 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.*;
+import com.kodigo.solid.fakeDB.FakeAppointmentDb;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
+
 
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import static javax.swing.UIManager.get;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class AppointmentBookController extends AbstractAppointmentController{
+@RequiredArgsConstructor
+public class AppointmentBookController extends AbstractAppointmentController {
     private Scanner sc = new Scanner(System.in);
-    private AppointmentEntity appointment;
+    private Long idAuth;
+    private Integer rolAuth;
+    private String nameAuth;
+
+    //Dependencia
+    private FakeAppointmentDb fakeAppointment = new FakeAppointmentDb();
+
+    public void loadDatabase() {
+        appointments = fakeAppointment.appointmentDatabase();
+    }
+
 
     @Override
-    public void listPatientAppointments(int id, String name) {
-        try {
-            String linea;
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileAppointment.text"));
-            linea = bf.readLine();
-            while (linea != null) {
-                System.out.println(linea);
-                linea = bf.readLine();
+    public AppointmentEntity getAppointment(int id) {
+        for (int i = 0; i < appointments.size(); i++) {
+            if (id == appointments.get(i).getId()) {
+                return appointments.get(i);
             }
-
-        } catch (Exception e) {
-
-            System.err.println("error -->" + e.getMessage());
         }
-        sortFileByDate();
-        for(int i = 0; i< appointments.size(); i++){
-            if(id== appointments.get(i).getId()){
-                System.out.println("\nID: "+ id+
-                                    "\nNombre :"+ name+
-                                    "\nFecha: "+ appointments.get(i).getDate()+
-                                    "\nHora: "+ appointments.get(i).getTime());
+        return null;
+    }
+
+
+    @Override
+    public void listAllAppointments(Long id) {
+        if (rolAuth.equals(3)) {
+            for (int i = 0; i < appointments.size(); i++) {
+                if (id == appointments.get(i).getIdPatient()) {
+                    System.out.println(appointments.get(i));
+                }
+            }
+        } else if (rolAuth.equals(2)) {
+            for (int i = 0; i < appointments.size(); i++) {
+                if (id == appointments.get(i).getIdDoctor()) {
+                    System.out.println(appointments.get(i));
+                }
             }
 
+        }
+    }
+
+
+    //metodo nuevo
+    @Override
+    public void createAppointment() {
+        Random ram = new Random();
+        int id = ram.nextInt(2000);
+        if (rolAuth.equals(2)) {
+            System.out.println("\nIngrese los datos de la cita");
+            System.out.println("Ingrese el nombre del paciente");
+            String name = sc.nextLine();
+            System.out.println("Ingrese la fecha de la cita");
+            LocalDate d = LocalDate.parse(sc.next());
+            System.out.println("Ingrese la hora de la cita");
+            LocalTime t = LocalTime.parse(sc.next());
+            System.out.println("El registro fue creado exitosamente\n");
+            AppointmentEntity appointment = new AppointmentEntity(id, name, this.nameAuth, this.idAuth, d, t);
+            appointments.add(appointment);
+        } else if (rolAuth.equals(3)) {
+            System.out.println("\nIngrese los datos de la cita");
+            System.out.println("Ingrese el nombre del doctor");
+            String name = sc.nextLine();
+            System.out.println("Ingrese la fecha de la cita");
+            LocalDate d = LocalDate.parse(sc.next());
+            System.out.println("Ingrese la hora de la cita");
+            LocalTime t = LocalTime.parse(sc.next());
+            System.out.println("El registro fue creado exitosamente\n");
+            AppointmentEntity appointment = new AppointmentEntity(id, d, t, this.nameAuth, name, this.idAuth);
+            appointments.add(appointment);
         }
 
     }
 
     @Override
-    public void addAppointment(int id, String name) {
-        System.out.println("\nIngrese los datos de la cita");
-        System.out.println("Ingrese Fecha");
-        LocalDate d = LocalDate.parse(sc.next());
-        System.out.println("Ingrese Hora");
-        LocalTime t = LocalTime.parse(sc.next());
-        System.out.println(id);
-        appointment = new AppointmentEntity(id, d, t);
-        appointments.add(appointment);
-        writeFile();
-    }
-
-    @Override
-    public void updateAppointment() {
-        System.out.println("Ingrese nueva fecha");
-        appointment.setDate(LocalDate.parse(sc.next()));
-        System.out.println("Ingrese nueva hora");
-        appointment.setTime(LocalTime.parse(sc.next()));
-        System.out.println("Cita actualizada exitosamente");
+    public void updateAppointment(@NotNull AppointmentEntity appointment) {
+        AppointmentEntity appointmentDB = getAppointment(appointment.getId());
+        for (int i = 0; i < appointments.size(); i++) {
+            if (appointments.get(i) == appointmentDB) {
+                System.out.println("Ingrese nueva fecha");
+                appointment.setDatetime(LocalDate.parse(sc.next()));
+                System.out.println("Ingrese nueva hora");
+                appointment.setTime(LocalTime.parse(sc.next()));
+                System.out.println("Cita actualizada exitosamente");
+                appointments.set(i, appointmentDB);
+            }
+        }
     }
 
     @Override
     public void deleteAppointment(int id) {
         //System.out.println(i);
-      for (int i = 0; i < appointments.size(); i++) {
-            if (id == appointments.get(i).getId() ) {
+        for (int i = 0; i < appointments.size(); i++) {
+            if (id == appointments.get(i).getId()) {
                 appointments.remove(i);
                 System.out.println("¡Cita eliminada exitosamente!\n");
             }
@@ -94,7 +132,7 @@ public class AppointmentBookController extends AbstractAppointmentController{
 
             for (int i = 0; i < appointments.size(); i++) {
                 writeBuff.write("\nId usuario: " + appointments.get(i).getId() +
-                        "\nFecha de cita: " + appointments.get(i).getDate() +
+                        "\nFecha de cita: " + appointments.get(i).getDatetime() +
                         "\nHora de la cita: " + appointments.get(i).getTime());
 
             }
@@ -107,9 +145,5 @@ public class AppointmentBookController extends AbstractAppointmentController{
         }
     }
 
-    @Override
-    public void sortFileByDate(){
-        appointments.sort(Comparator.comparing(AppointmentEntity::getDatetime));
-    }
 }
 

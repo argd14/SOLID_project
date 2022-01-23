@@ -1,6 +1,6 @@
 /*
 NOMBRE: Projecto SOLID
-DESCRIPCION: Aplicar los principios solid
+DESCRIPCION: Aplicar los principios solid para manejar una clinica que realice diferentes funcionalidades
 
 1: Cada clase o método sólo debe hacer una cosa, sencilla y concreta.
 Si un objeto tiene un sólo cometido, éste será más fácil de mantener.
@@ -19,6 +19,8 @@ a cualquiera de las subclases)
 (El objetivo es conseguir que una clase interactúe con otras clases sin que las conozca directamente.)
 
 */
+
+//se elimino la clase doctorappointmet y el paquete db se cambio
 
 package com.kodigo.solid;
 

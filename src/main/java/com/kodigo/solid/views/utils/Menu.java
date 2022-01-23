@@ -1,4 +1,4 @@
-package com.kodigo.solid.utils;
+package com.kodigo.solid.views.utils;
 
 import lombok.Getter;
 

@@ -1,40 +1,61 @@
 package com.kodigo.solid.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AppointmentEntity implements Serializable {
-  private int Id;
-  private LocalDate date;
-  private LocalTime time;
-  private LocalDateTime datetime;
+    @Generated
+    private int id;
 
-  public AppointmentEntity(int id, LocalDate d, LocalTime t) {
-    this.Id = id;
-    this.date = d;
-    this.time = t;
-    this.datetime = date.atTime(time);
-  }
+    private Long idPatient;
+    private String namePatient;
+    private Long idDoctor;
+    private String nameDoctor;
+    private LocalTime time;
+    private LocalDate datetime;
+    Random random = new Random();
 
-  public String getDateString()
-  {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
-    return datetime.format(formatter);
-  }
+    public AppointmentEntity(int id, String name, String nameAuth, Long idAuth, LocalDate d, LocalTime t) {
+        this.id = id;
+        this.namePatient = name;
+        this.nameDoctor = nameAuth;
+        this.datetime = d;
+        this.time = t;
+        this.idDoctor = idAuth;
 
-  @Override
-  public String toString()
-  {
-    return ( "\nPaciente: " + this.Id + ".\n" + "Fecha: " + this.getDateString());
-  }
+    }
+
+    public AppointmentEntity(int id, LocalDate d, LocalTime t, String nameAuth, String name, Long idAuth) {
+        this.id = id;
+        this.datetime = d;
+        this.time = t;
+        this.namePatient = nameAuth;
+        this.nameDoctor = name;
+        this.idPatient = idAuth;
+    }
+
+    public String getDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMM d, yyyy hh:mm:ss a");
+        return datetime.format(formatter);
+    }
+
+    @Override
+    public String toString() {
+        return ("\nNumero cita: " + this.id +
+                "\nNombre paciente: " + this.namePatient +
+                "\nNombre doctor: " + nameDoctor +
+                "\nFecha: " + this.datetime +
+                "\nHora: " + this.time + "\n");
+    }
 
 }
 

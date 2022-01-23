@@ -2,14 +2,21 @@ package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.UserEntity;
 
-import java.util.ArrayList;
-
 public interface InterfaceAdminController {
 
-    public void addEntity();
-    public void updateEntity();
-    public void deleteEntity(int id);
-    public void showAllEntity();
+    //metodo agregado
+    public void findByRol(int rol);
 
+    //metodo agregado
+    public UserEntity getUser(Long id);
 
+    public void createUser();
+
+    public void updateUser(UserEntity user);
+
+    public void deleteUser(Long id);
+
+    public void lisAllUsers();
+
+    void writeFile();
 }

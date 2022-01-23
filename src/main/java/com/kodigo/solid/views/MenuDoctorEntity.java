@@ -2,140 +2,164 @@ package com.kodigo.solid.views;
 
 import com.kodigo.solid.controllers.*;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
-import com.kodigo.solid.services.auth.ConsultationService;
-import com.kodigo.solid.services.auth.PrintConsultationsService;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 @Data
+@RequiredArgsConstructor
 public class MenuDoctorEntity {
 
-    private AbstractDoctorController DoctorEntity ;
-    private AbstractAppointmentController appointmentBook ;
-    private DoctorAppointmentController showAllAppointment ;
+    //dependencia
+    private final DoctorPrescriptionController DoctorEntity;
+    private final AppointmentBookController appointmentBook;
+
+
     private AuthServiceImplementation auth;
+
     private boolean exit = false;
-    private int option;
-    private int idAuth;
+    private String option;
+    private Long idAuth;
     private String userAuth;
     private Scanner sc = new Scanner(System.in);
 
-    public void idAuth(int id, String nombre) {
-        this.idAuth = id;
-        this.userAuth = nombre;
-    }
 
-    public void viewMenuDoctor() throws IOException {
+    public void viewMenuDoctor(){
         while (!exit) {
 
             System.out.println("-----MENU DOCTOR----- ");
             System.out.println("==============================");
-            System.out.println("--- 1 - GESTION HISTORIAL ----- ");
+            System.out.println("--- 1 - GESTION MEDICA ----- ");
+            System.out.println("  - Registrar consulta");
+            System.out.println("  - Actualizar consulta ");
+            System.out.println("  - Eliminar consulta");
             System.out.println("==============================");
             System.out.println("--- 2 - GESTION DE RECETAS----- ");
             System.out.println("  - Prescribir receta");
             System.out.println("  - Consultar receta");
             System.out.println("  - Eliminar receta");
-            System.out.println("  - Enviar receta por email");
             System.out.println("==============================");
             System.out.println("--- 3 - AGENDA----- ");
             System.out.println("--- 0 - Salir ");
             System.out.println();
             System.out.print(" Ingrese la opción que desea: ");
-            option = sc.nextInt();
+            option = sc.nextLine();
 
             switch (option) {
-                case 1:
-                    // Gestion Historial
-                    ConsultationService consultationService = new ConsultationService();
-                    PrintConsultationsService printConsultationsService = new PrintConsultationsService();
+                case "1":
                     while (!exit) {
                         System.out.println("==============================");
-                        System.out.println(
-                                "GESTION HISTORIAL MEDICO\n"
-                                        + "1 - Registrar consulta\n"
-                                        + "2 - Ver consultas\n"
-                                        + "3 - Imprimir hoja de consulta \n"
-                        );
-                        int option = sc.nextInt();
+                        System.out.println("GESTION HISTORIAL MEDICO\n"
+                                + "1 - Registrar consulta\n"
+                                + "2 - Actualizar consulta\n"
+                                + "3 - Eliminar consultas\n");
+                        option = sc.nextLine();
                         switch (option) {
-                            case 1 -> {
+                            case "1" -> {
                                 System.out.println("==============================");
-                                //  consultationService.createConsultation();
+                                appointmentBook.createAppointment();
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                             }
-                            case 2 -> {
+                            case "2" -> {
                                 System.out.println("==============================");
-                                //  consultationService.showAppointmentEntity();
+                                System.out.println("Ingrese el ID de la consulta ");
+                                int id = sc.nextInt();
+                                appointmentBook.updateAppointment(appointmentBook.getAppointment(id));
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                             }
-                            case 3 -> {
+                            case "3" -> {
                                 System.out.println("==============================");
-                                // printConsultationsService.createPdf();
+                                System.out.println("Ingrese el ID de la consulta ");
+                                int id = sc.nextInt();
+                                appointmentBook.deleteAppointment(id);
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                             }
-                            default -> System.out.println("Opcion invalida");
+
+                            default -> System.out.println("Opcion invalida, Ingrese una option correcta\n");
+
                         }
                     }
                     break;
-
-                case 2:
+                //funconando
+                case "2":
                     // Gestion de recetas
                     while (!exit) {
                         System.out.println("==============================");
-                        System.out.println(
-                                "GESTION RECETAS\n"
-                                        + "1 - Preescribir receta\n"
-                                        + "2 - Consultar recetas\n"
-                                        + "3 - Eliminar recetas \n"
-                                        + "4 - Enviar receta por correo");
-                        option = sc.nextInt();
+                        System.out.println("GESTION RECETAS\n"
+                                + "1 - Preescribir receta\n"
+                                + "2 - Consultar recetas\n"
+                                + "3 - Actualizar receta\n"
+                                + "4 - Eliminar recetas \n");
+                        option = sc.nextLine();
                         switch (option) {
-                            case 1:
+                            case "1":
                                 System.out.println("==============================");
                                 // preescribir receta
-                                DoctorEntity.addPrescription();
+                                DoctorEntity.createPrescription();
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                                 break;
-                            case 2:
+                            case "2":
                                 System.out.println("==============================");
                                 // Consultar Recetas
-                                DoctorEntity.showPrescription();
+                                DoctorEntity.listAllPrescription();
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                                 break;
-                            case 3:
+                            case "3":
+                                System.out.println("Ingrese el ID de la receta ");
+                                Long id = sc.nextLong();
+                                DoctorEntity.updatePrescription(DoctorEntity.getPrescription(id));
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
+                                break;
+                            case "4":
                                 System.out.println("==============================");
                                 // eliminar recetas
-                                DoctorEntity.deletePrescription();
-                                break;
-                            case 4:
-                                System.out.println("==============================");
-                                auth.userLogin();
+                                System.out.println("Ingrese el ID de la receta ");
+                                id = sc.nextLong();
+                                DoctorEntity.deletePrescription(id);
+                                System.out.println("\n0 - Regresar");
+                                back(sc.nextLine());
                                 break;
                             default:
+                                System.out.println("Opcion invalida, Ingrese una option correcta\n");
                                 break;
                         }
                     }
                     break;
 
-                case 3:
+                case "3":
                     // Agenda
                     System.out.println("==============================");
                     System.out.println("-----AGENDA----");
-                    showAllAppointment.showAllAppointment();
-                    System.out.println("0 - Regresar");
-                    int op = sc.nextInt();
-                    if (op == 0) {
-                        viewMenuDoctor();
-                    }
+                    appointmentBook.listAllAppointments(idAuth);
+                    System.out.println("\n0 - Regresar");
+                    back(sc.nextLine());
                     break;
 
-                case 0:
+                case "0":
                     // Salir
                     exit = true;
                     auth.userLogin();
                     break;
-
                 default:
+                     System.out.println("Opcion invalida, Ingrese una option correcta\n");
                     break;
             }
+        }
+    }
+    //metodo nuevo para regresar
+    public void back(String back) {
+        if (back == "0") {
+            viewMenuDoctor();
+        } else {
+            viewMenuDoctor();
         }
     }
 }

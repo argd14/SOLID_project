@@ -1,132 +1,140 @@
 package com.kodigo.solid.views;
 
-import com.kodigo.solid.controllers.AbstractAppointmentController;
-import com.kodigo.solid.controllers.AbstractPaymentController;
 import com.kodigo.solid.controllers.AppointmentBookController;
 import com.kodigo.solid.controllers.PaymentEntityController;
-import com.kodigo.solid.entities.AppointmentEntity;
-import fkDatabase.PaymentDataBase;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MenuPatientEntity {
-    private int option;
-    private int idCita, idAuth;
-    private String userAuth;
-    private AbstractAppointmentController appointmentBook ;
-    private AbstractPaymentController paymentManager ;
-    private PaymentDataBase data = new PaymentDataBase();
+
+
+    //dependencia
+    private final AppointmentBookController appointmentBook;
     private AuthServiceImplementation auth;
+    private final PaymentEntityController paymentController;
+
+
+    private  Long idAuth;
+    private  String userAuth;
+    private String option;
+    private int confirm, idApp;
     private boolean exit = false;
-    private int confirm;
+
     private Scanner sc = new Scanner(System.in);
 
-    public void idAuth(int id, String nombre) {
-        this.idAuth = id;
-        this.userAuth = nombre;
-    }
 
     public void viewMenuPatient() {
-        data.dataBase(this.idAuth);
         System.out.println("---------MENÚ PACIENTE---------");
         System.out.println("===============================");
         System.out.println("--- 1 - GESTIÓN DE CITAS ------");
-        System.out.println("-Crear cita\n-Actualizar cita\n-Cancelar cita");
+        System.out.println("-Crear cita\n-Actualizar cita\n-Eliminar cita\n-Mostrar citas");
         System.out.println("===============================");
         System.out.println("--- 2 - GESTIÓN DE PAGOS ------");
-        System.out.println("-Historial de pago\n-Imprimir factura");
+        System.out.println("-Historial de Pagos\n-Buscar pago \n-Eliminar pago");
         System.out.println("===============================");
         System.out.println("--- 3 - AGENDA ----------------");
         System.out.println("===============================");
         System.out.println("0 - Salir");
 
         System.out.print("Ingrese la opción que desea: ");
-        option = sc.nextInt();
+        option = sc.nextLine();
         while (!exit) {
             switch (option) {
-                case 1:
+                case "1":
                     System.out.println("===============================");
                     System.out.println("---------GESTIÓN CITAS---------");
                     System.out.println("===============================");
-                    System.out.println("1. Nueva Cita\n2. Actualizar Cita\n3. Cancelar Cita\n0. Regresar");
+                    System.out.println("1. Nueva Cita\n2. Actualizar Cita\n3. Eliminar cita\n4. Mostras citas\n0. Regresar");
                     System.out.print("Ingrese la opción que desea: ");
-                    option = sc.nextInt();
+                    option = sc.nextLine();
                     switch (option) {
-                        case 1:
-                            appointmentBook.addAppointment(this.idAuth, this.userAuth);
+                        case "1":
+                            appointmentBook.createAppointment();
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
                             break;
-                        case 2:
+                        case "2":
+                            System.out.println("Ingrese el ID de la cita: ");
+                            int idCita = sc.nextInt();
+                            appointmentBook.updateAppointment(appointmentBook.getAppointment(idCita));
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
+                            break;
+                        case "3":
                             System.out.println("Ingrese el ID de la cita: ");
                             idCita = sc.nextInt();
-                            if (idCita == this.idAuth) {
-                                appointmentBook.updateAppointment();
-                            }
+                            appointmentBook.deleteAppointment(idCita);
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
                             break;
-                        case 3:
-                            if (appointmentBook.getAppointments().isEmpty()) {
-                                System.out.println(appointmentBook.getAppointments());
-                                System.out.println("no existen citas en agenda\n");
-                            } else {
-                                System.out.println("Eliminar cita--> 1-- si / 0 Regresar ");
-                                confirm = sc.nextInt();
-                            }
-
-                            switch (confirm) {
-                                case 1:
-                                    appointmentBook.deleteAppointment(this.idAuth);
-                                    break;
-                                case 2:
-                                    viewMenuPatient();
-                                    break;
-                            }
+                        case "4":
+                            appointmentBook.listAllAppointments(idAuth);
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
                             break;
-                        case 0:
+                        case "0":
                             viewMenuPatient();
                             break;
+                        default:
+                            System.out.println("Opcion invalida, Ingrese una option correcta\n");
+                            break;
+
                     }
                     break;
 
-                case 2:
+                case "2":
                     System.out.println("===============================");
                     System.out.println("---------GESTIÓN PAGOS---------");
                     System.out.println("===============================");
-                    System.out.println("1. Historial de Pagos\n2. Imprimir factura\n0. Regresar");
+                    System.out.println("1. Historial de Pagos\n2. Buscar pago \n3. Eliminar pago \n0. Regresar");
                     System.out.println("Ingrese la opción que desea: ");
-                    option = sc.nextInt();
+                    option = sc.nextLine();
                     switch (option) {
-                        case 1:
-                            //historial de pagos
+                        case "1":
                             System.out.println("===============================");
                             System.out.println("-----Pagos realizados ");
-                            paymentManager.listPatientPayments(this.idAuth);
-                            System.out.println("-------------------------------");
+                            paymentController.listAllPayments(idAuth);
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
                             break;
-                        case 2:
-                            // factura
-                            System.out.println("Imprimir Factura");
-                            System.out.println("Ingrese Pago ID:");
-                            int paymentId = sc.nextInt();
-                            paymentManager.printPayment(paymentId);
+                        case "2":
+                            System.out.println("Ingrese numero de pago");
+                            idApp = sc.nextInt();
+                            System.out.println(paymentController.getPayment(idApp));
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
                             break;
-                        case 0:
-                            exit = true;
+                        case "3":
+                            System.out.println("Ingrese numero de pago");
+                            idApp = sc.nextInt();
+                            paymentController.deletePayment(idApp);
+                            System.out.println("\n0 - Regresar");
+                            back(sc.nextLine());
+                            break;
+                        case "0":
+                            viewMenuPatient();
+                            break;
+                        default:
+                            System.out.println("Opcion invalida, Ingrese una option correcta\n");
                             break;
                     }
-
                     break;
 
-                case 3:
-                    appointmentBook.listPatientAppointments(this.idAuth, this.userAuth);
+                case "3":
+                    appointmentBook.listAllAppointments(this.idAuth);
                     break;
 
-                case 0:
+                case "0":
                     auth.userLogin();
+                    break;
+                default:
+                    System.out.println("Opcion invalida, Ingrese una option correcta\n");
                     break;
 
             }
@@ -134,6 +142,15 @@ public class MenuPatientEntity {
         }
 
 
+    }
+
+    //metodo nuevo para regresar
+    public void back(String back) {
+        if (back == "0") {
+            viewMenuPatient();
+        } else {
+            viewMenuPatient();
+        }
     }
 
 

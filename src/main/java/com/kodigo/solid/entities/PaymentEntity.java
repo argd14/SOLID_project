@@ -1,37 +1,43 @@
 package com.kodigo.solid.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PaymentEntity {
-    private int id;
-    private int patientId;
-    private LocalDateTime datetime;
+
+    private Long id;
+    private String name;
+    private Long idUser;
+    private LocalDate datetime;
     private String concept;
     private double amount;
 
-    public PaymentEntity(int id, int patientId, String concept, double amount) {
+    public PaymentEntity(Long id, String name, Long idUser,String concept, double amount) {
         this.id = id;
-        this.patientId = patientId;
-        this.datetime = LocalDateTime.now();
+        this.name = name;
+        this.idUser = idUser;
+        this.datetime = LocalDate.from(LocalDateTime.now());
         this.concept = concept;
         this.amount = amount;
-    }
-
-    public LocalDateTime getDatetime() {
-        return datetime;
     }
 
     @Override
     public String toString() {
         return "\nRegistro de pago: " +
-                "\nid: " + id +
-                "\nid Paciente: " + patientId +
+                "\nnumero de pago "+id+
+                "\nid cliente " + idUser +
+                "\nnombre cliente "+ name+
                 "\nfecha: " + datetime +
                 "\nconcepto: " + concept +
-                "\nmonto: \n" + amount;
+                "\nmonto: \n" + amount+"\n";
     }
 }

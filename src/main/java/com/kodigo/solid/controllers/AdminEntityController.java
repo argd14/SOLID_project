@@ -1,30 +1,57 @@
 package com.kodigo.solid.controllers;
 
-import com.kodigo.solid.entities.AdminEntity;
-import com.kodigo.solid.entities.DoctorEntity;
-import com.kodigo.solid.entities.PatientEntity;
 import com.kodigo.solid.entities.UserEntity;
-import lombok.AllArgsConstructor;
+import com.kodigo.solid.fakeDB.FakeUsersDb;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class AdminEntityController extends AbstractAdminController {
 
-    private UserEntity user;
-    private int rol;
+    //private int rol;
     private Scanner sc = new Scanner(System.in);
 
+    //dependencia
+    FakeUsersDb fakeUsers = new FakeUsersDb();
+
+    //metodo carga los datos inicales de fakeDB
+    public void loadData() {
+        UsersEntityList = fakeUsers.userDatabase();
+    }
+
+    //metodo agregado
     @Override
-    public void addEntity() {
+    public UserEntity getUser(Long id) {
+        for (int i = 0; i < UsersEntityList.size(); i++) {
+            if (id == UsersEntityList.get(i).getId()) {
+                return UsersEntityList.get(i);
+            }
+        }
+        return null;
+    }
+
+    //metodo agregado
+    @Override
+    public void findByRol(int rol) {
+        for (int i = 0; i < UsersEntityList.size(); i++) {
+            if (rol == UsersEntityList.get(i).getRole()) {
+                System.out.println(UsersEntityList.get(i));
+            }
+        }
+
+    }
+
+    @Override
+    public void createUser() {
+
         System.out.println("--------INGRESANDO DATOS DEL USUARIO-----");
         System.out.println("ingrese el id del Usuario: ");
-        int id = sc.nextInt();
+        Long id = sc.nextLong();
         System.out.println("ingrese el userName: ");
         String username = sc.next();
         System.out.println("ingrese el nombre del usuario: ");
@@ -38,12 +65,13 @@ public class AdminEntityController extends AbstractAdminController {
         System.out.println("ingrese la contraseña: ");
         String password = sc.next();
         System.out.println("ingrese el rol del usuario: ");
-        rol = sc.nextInt();
+        int rol = sc.nextInt();
+        System.out.println("El registro fue creado exitosamente\n");
 
-        user = new UserEntity(id, username, name, date, phone, email, password, rol);
+        UserEntity user = new UserEntity(id, username, name, date, phone, email, password, rol);
         UsersEntityList.add(user);
         writeFile();
-
+/*
         if (this.rol == 1) {
             AdminEntity admin = new AdminEntity(id, username, name, date, phone, email, password, rol);
             AdminEntityList.add(admin);
@@ -54,45 +82,47 @@ public class AdminEntityController extends AbstractAdminController {
         } else if (this.rol == 3) {
             PatientEntity patient = new PatientEntity(id, username, name, date, phone, email, password, rol);
             PatientEntityList.add(patient);
+        }*/
+    }
+
+    @Override
+    public void updateUser(@NotNull UserEntity user) {
+        UserEntity userDB = getUser(user.getId());
+        for (int i = 0; i < UsersEntityList.size(); i++) {
+            if (UsersEntityList.get(i) == userDB) {
+                System.out.println("ingrese el userName: ");
+                userDB.setUsername(sc.next());
+                System.out.println("ingrese el nombre del usuario: ");
+                userDB.setName(sc.next());
+                System.out.println("ingrese la fecha de nacimiento: ");
+                userDB.setBirthday(LocalDate.parse(sc.next()));
+                System.out.println("ingrese el numero de telefono: ");
+                userDB.setPhoneNumber(sc.next());
+                System.out.println("ingrese el email del usuario: ");
+                userDB.setEmail(sc.next());
+                System.out.println("ingrese la contraseña: ");
+                userDB.setPassword(sc.next());
+                System.out.println("ingrese el rol del usuario: ");
+                userDB.setRole(sc.nextInt());
+                System.out.println("El registro fue actualizado exitosamente\n");
+                UsersEntityList.set(i, userDB);
+            }
         }
     }
 
     @Override
-    public void updateEntity() {
-        System.out.println("ingrese el userName: ");
-        user.setUsername(sc.next());
-        System.out.println("ingrese el nombre del usuario: ");
-        user.setName(sc.next());
-        System.out.println("ingrese la fecha de nacimiento: ");
-        user.setBirthday(LocalDate.parse(sc.next()));
-        System.out.println("ingrese el numero de telefono: ");
-        user.setPhoneNumber(sc.next());
-        System.out.println("ingrese el email del usuario: ");
-        user.setEmail(sc.next());
-        System.out.println("ingrese la contraseña: ");
-        user.setPassword(sc.next());
-        System.out.println("ingrese el rol del usuario: ");
-        user.setRole(sc.nextInt());
-        System.out.println("El registro fue actualizado exitosamente\n");
-
-    }
-
-    @Override
-    public void deleteEntity(int id) {
+    public void deleteUser(Long id) {
         for (int i = 0; i < UsersEntityList.size(); i++) {
             if (id == UsersEntityList.get(i).getId()) {
                 UsersEntityList.remove(i);
                 System.out.println("Usuario eliminado exitosamente\n");
-            } else {
-                System.out.println("No se encuentro el numero de usuario\n");
             }
         }
-
     }
 
     @Override
-    public void showAllEntity() {
-        try {
+    public void lisAllUsers() {
+       /* try {
             String linea;
             BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\fileUsers.text"));
             linea = bf.readLine();
@@ -104,10 +134,10 @@ public class AdminEntityController extends AbstractAdminController {
         } catch (Exception e) {
 
             System.err.println("error -->" + e.getMessage());
-        }
+        }*/
+        System.out.println(UsersEntityList);
+
     }
-
-
 
     @Override
     public void writeFile() {

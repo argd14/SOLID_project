@@ -9,4 +9,5 @@ import java.util.List;
 @Data
 public abstract class AbstractAppointmentController implements InterfaceAppointmentController , InterfaceWriteFile {
     List<AppointmentEntity> appointments = new ArrayList<>();
+
 }

@@ -1,13 +1,22 @@
 package com.kodigo.solid.controllers;
 
+import com.kodigo.solid.entities.AppointmentEntity;
+import com.kodigo.solid.entities.UserEntity;
+
 import java.time.LocalDate;
 
 public interface InterfaceAppointmentController {
 
-     void listPatientAppointments(int id, String name);
-     void addAppointment(int id, String name);
-     void updateAppointment();
-     void deleteAppointment(int id);
+    AppointmentEntity getAppointment(int id);
 
-     void sortFileByDate();
+    void listAllAppointments(Long id);
+
+    void createAppointment();
+
+    void updateAppointment(AppointmentEntity appointment);
+
+    void deleteAppointment(int id);
+
+
+    void writeFile();
 }

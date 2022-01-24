@@ -1,11 +1,13 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.PaymentEntity;
+import com.kodigo.solid.entities.PrescriptionEntity;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public interface InterfacePaymentController {
-    void printPayment(int id);
-
-    void listPatientPayments(int id);
-
-    void addPayment(PaymentEntity p);
+    PaymentEntity getPayment(int id);
+    void listAllPayments(Long id);
+    void deletePayment(int id);
 }

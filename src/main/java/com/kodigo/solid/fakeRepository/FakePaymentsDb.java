@@ -1,7 +1,6 @@
-package com.kodigo.solid.fakeDB;
+package com.kodigo.solid.fakeRepository;
 
 import com.kodigo.solid.entities.PaymentEntity;
-import com.kodigo.solid.entities.PrescriptionEntity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

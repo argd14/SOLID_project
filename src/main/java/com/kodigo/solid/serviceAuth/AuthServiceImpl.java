@@ -1,4 +1,4 @@
-package com.kodigo.solid.services.auth;
+package com.kodigo.solid.serviceAuth;
 
 import com.kodigo.solid.controllers.*;
 import com.kodigo.solid.views.MenuAdminEntity;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-public class AuthServiceImplementation {
+public class AuthServiceImpl {
 
 
     private Integer userRol;
@@ -27,7 +27,7 @@ public class AuthServiceImplementation {
     private DoctorPrescriptionController doctorController = new DoctorPrescriptionController();
     private PaymentEntityController paymentController = new PaymentEntityController();
     private AppointmentBookController appointmentBookController = new AppointmentBookController();
-    private AuthServiceImplementation auth;
+    private AuthServiceImpl auth;
 
 
     private MenuAdminEntity adminMenu = new MenuAdminEntity(adminController, paymentController, appointmentBookController,auth);

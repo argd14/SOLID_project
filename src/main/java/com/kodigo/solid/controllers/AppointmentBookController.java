@@ -1,22 +1,15 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.*;
-import com.kodigo.solid.fakeDB.FakeAppointmentDb;
-import lombok.AllArgsConstructor;
+import com.kodigo.solid.fakeRepository.FakeAppointmentDb;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
-
-import static javax.swing.UIManager.get;
 
 @Data
 @RequiredArgsConstructor

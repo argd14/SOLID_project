@@ -24,12 +24,12 @@ a cualquiera de las subclases)
 
 package com.kodigo.solid;
 
-import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.serviceAuth.AuthServiceImpl;
 
 public class Main {
 
     public static void main(String[] args) {
-        AuthServiceImplementation login = new AuthServiceImplementation();
+        AuthServiceImpl login = new AuthServiceImpl();
         login.userLogin();
     }
 }

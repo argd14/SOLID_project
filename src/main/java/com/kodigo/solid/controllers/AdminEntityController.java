@@ -1,7 +1,7 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.UserEntity;
-import com.kodigo.solid.fakeDB.FakeUsersDb;
+import com.kodigo.solid.fakeRepository.FakeUsersDb;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;

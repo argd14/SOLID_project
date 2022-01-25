@@ -1,11 +1,10 @@
 package com.kodigo.solid.views;
 
 import com.kodigo.solid.controllers.*;
-import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.serviceAuth.AuthServiceImpl;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 @Data
@@ -15,7 +14,7 @@ public class MenuDoctorEntity {
     //dependencia
     private final DoctorPrescriptionController DoctorEntity;
     private final AppointmentBookController appointmentBook;
-    private final AuthServiceImplementation auth;
+    private final AuthServiceImpl auth;
 
 
 

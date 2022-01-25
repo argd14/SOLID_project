@@ -1,4 +1,4 @@
-package com.kodigo.solid.fakeDB;
+package com.kodigo.solid.fakeRepository;
 
 import com.kodigo.solid.entities.AppointmentEntity;
 

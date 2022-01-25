@@ -1,7 +1,7 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.PaymentEntity;
-import com.kodigo.solid.fakeDB.FakePaymentsDb;
+import com.kodigo.solid.fakeRepository.FakePaymentsDb;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,12 +1,10 @@
-package com.kodigo.solid.fakeDB;
+package com.kodigo.solid.fakeRepository;
 
-import com.kodigo.solid.controllers.AdminEntityController;
 import com.kodigo.solid.entities.UserEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 @Data
 public class FakeUsersDb {

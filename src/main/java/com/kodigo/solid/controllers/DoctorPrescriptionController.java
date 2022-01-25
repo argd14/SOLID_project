@@ -1,7 +1,7 @@
 package com.kodigo.solid.controllers;
 
 import com.kodigo.solid.entities.PrescriptionEntity;
-import com.kodigo.solid.fakeDB.FakePrescriptionDb;
+import com.kodigo.solid.fakeRepository.FakePrescriptionDb;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

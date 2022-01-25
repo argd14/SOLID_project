@@ -29,6 +29,22 @@ public class FakePrescriptionDb {
                 .build();
         prescriptions.add(prescription2);
 
+        PrescriptionEntity prescription3 = PrescriptionEntity.builder()
+                .id(3)
+                .medicineName("Paracetamol")
+                .namePatient("roxy")
+                .dosage("1 c/6h")
+                .build();
+        prescriptions.add(prescription3);
+
+        PrescriptionEntity prescription4 = PrescriptionEntity.builder()
+                .id(4)
+                .namePatient("juan")
+                .medicineName("Amoxicilina 500mg")
+                .dosage("1 c/8h")
+                .build();
+        prescriptions.add(prescription4);
+
         return prescriptions;
 
         }

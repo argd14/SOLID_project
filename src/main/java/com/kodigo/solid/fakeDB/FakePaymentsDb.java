@@ -40,7 +40,17 @@ public class FakePaymentsDb {
                 .datetime(LocalDate.ofEpochDay(2020-12-12))
                 .amount(50)
                 .build();
-        payments.add(payment1);
+        payments.add(payment3);
+
+        PaymentEntity payment4 = PaymentEntity.builder()
+                .id(4L)
+                .name("Roxy")
+                .idUser(12L)
+                .concept("Medicamentos")
+                .datetime(LocalDate.ofEpochDay(2020-10-10))
+                .amount(25)
+                .build();
+        payments.add(payment4);
 
         return payments;
     }

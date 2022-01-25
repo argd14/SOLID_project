@@ -27,7 +27,7 @@ public class AppointmentBookController extends AbstractAppointmentController {
     private String nameAuth;
 
     //Dependencia
-    private FakeAppointmentDb fakeAppointment = new FakeAppointmentDb();
+     FakeAppointmentDb fakeAppointment = new FakeAppointmentDb();
 
     @Override
     public void loadDatabase() {

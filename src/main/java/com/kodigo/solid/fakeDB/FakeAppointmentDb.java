@@ -33,6 +33,27 @@ public class FakeAppointmentDb {
                 .build();
         appointments.add(appointment2);
 
+        AppointmentEntity appointment3 = AppointmentEntity.builder()
+                .id(4)
+                .idPatient(14L)
+                .idDoctor(15L)
+                .nameDoctor("Dr. Rivas")
+                .namePatient("Juan")
+                .datetime(LocalDate.ofEpochDay(2020-11-10))
+                .time(LocalTime.now())
+                .build();
+        appointments.add(appointment3);
+
+        AppointmentEntity appointment4 = AppointmentEntity.builder()
+                .id(4)
+                .idPatient(14L)
+                .idDoctor(15L)
+                .nameDoctor("Dr. Rivas")
+                .namePatient("Roxy")
+                .datetime(LocalDate.ofEpochDay(2020-10-10))
+                .time(LocalTime.now())
+                .build();
+        appointments.add(appointment4);
 
         return appointments;
     }

@@ -1,6 +1,7 @@
 package com.kodigo.solid.entities;
 
 import lombok.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +22,8 @@ public class AppointmentEntity implements Serializable {
     private Long idDoctor;
     private String nameDoctor;
     private LocalTime time;
+    @NotNull(message = "Date cannot be null")
+    @Future(message = "Date cannot be past")
     private LocalDate datetime;
     Random random = new Random();
 

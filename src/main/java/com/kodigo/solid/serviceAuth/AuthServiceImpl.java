@@ -65,6 +65,7 @@ public class AuthServiceImpl {
                     doctorMenu.setIdAuth(this.idAuth);
                     doctorMenu.setUserAuth(this.userAuth);
 
+
                 }
             }
 
@@ -74,7 +75,7 @@ public class AuthServiceImpl {
                 doctorMenu.viewMenuDoctor();
             } else if (getUserRol().equals(3)) {
                 patientMenu.viewMenuPatient();
-            } else if (userRol != 3) {
+            } else {
                 System.out.println("\nUsuario o contraseña no validos. Intentelo de nuevo\n");
 
                 userLogin();

@@ -2,10 +2,10 @@ package com.kodigo.solid.views;
 
 import com.kodigo.solid.controllers.*;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.utils.menuMethods.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 @Data
@@ -15,7 +15,7 @@ public class MenuDoctorEntity {
     //dependencia
     private final DoctorPrescriptionController DoctorEntity;
     private final AppointmentBookController appointmentBook;
-    private final AuthServiceImplementation auth;
+   private final AuthServiceImplementation auth;
 
 
 
@@ -28,23 +28,7 @@ public class MenuDoctorEntity {
 
     public void viewMenuDoctor(){
         while (!exit) {
-
-            System.out.println("-----MENU DOCTOR----- ");
-            System.out.println("==============================");
-            System.out.println("--- 1 - GESTION MEDICA ----- ");
-            System.out.println("  - Registrar consulta");
-            System.out.println("  - Actualizar consulta ");
-            System.out.println("  - Eliminar consulta");
-            System.out.println("==============================");
-            System.out.println("--- 2 - GESTION DE RECETAS----- ");
-            System.out.println("  - Prescribir receta");
-            System.out.println("  - Consultar receta");
-            System.out.println("  - Eliminar receta");
-            System.out.println("==============================");
-            System.out.println("--- 3 - AGENDA----- ");
-            System.out.println("--- 0 - Salir ");
-            System.out.println();
-            System.out.print(" Ingrese la opción que desea: ");
+            doctorMenu.printDoctorMenu();
             option = sc.nextLine();
 
             switch (option) {

@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 public class doctorMenu {
 
-    private doctorMenu() {}
+    public doctorMenu() {}
 
     private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 

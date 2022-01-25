@@ -2,8 +2,9 @@ package com.kodigo.solid.entities;
 
 import jdk.jfr.ContentType;
 import lombok.*;
+import org.hibernate.validator.constraints.Email;
 import org.intellij.lang.annotations.JdkConstants;
-
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,6 +21,7 @@ public class UserEntity {
     private String name;
     private LocalDate birthday;
     private String phoneNumber;
+    @Email(message = "Email should be valid")
     private String email;
     private String password;
     private int Role;

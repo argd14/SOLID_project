@@ -3,6 +3,7 @@ package com.kodigo.solid.views;
 import com.kodigo.solid.controllers.AppointmentBookController;
 import com.kodigo.solid.controllers.PaymentEntityController;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.utils.menuMethods.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -29,19 +30,7 @@ public class MenuPatientEntity {
 
 
     public void viewMenuPatient() {
-        System.out.println("---------MENÚ PACIENTE---------");
-        System.out.println("===============================");
-        System.out.println("--- 1 - GESTIÓN DE CITAS ------");
-        System.out.println("-Crear cita\n-Actualizar cita\n-Eliminar cita");
-        System.out.println("===============================");
-        System.out.println("--- 2 - GESTIÓN DE PAGOS ------");
-        System.out.println("-Historial de Pagos\n-Buscar pago \n-Eliminar pago");
-        System.out.println("===============================");
-        System.out.println("--- 3 - AGENDA ----------------");
-        System.out.println("===============================");
-        System.out.println("0 - Salir");
-
-        System.out.print("Ingrese la opción que desea: ");
+        patientMenu.printPatientMenu();
         option = sc.nextLine();
         while (!exit) {
             switch (option) {

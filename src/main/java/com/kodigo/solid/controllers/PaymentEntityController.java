@@ -15,24 +15,6 @@ import java.io.*;
 @AllArgsConstructor
 public class PaymentEntityController extends AbstractPaymentController {
 
-   /* public void listPatientPayments(int id) {
-
-        try {
-            String linea;
-            BufferedReader bf = new BufferedReader(new FileReader("C:\\Users\\angel\\IdeaProjects\\SOLID_project\\filePayments.text"));
-            linea = bf.readLine();
-            while (linea != null) {
-                System.out.println(linea);
-                linea = bf.readLine();
-            }
-
-        } catch (Exception e) {
-
-            System.err.println("error -->" + e.getMessage());
-        }
-
-    }*/
-
     //dependencia
     FakePaymentsDb paymentDb = new FakePaymentsDb();
 

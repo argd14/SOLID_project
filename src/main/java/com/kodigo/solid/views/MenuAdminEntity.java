@@ -5,6 +5,7 @@ import com.kodigo.solid.controllers.AdminEntityController;
 import com.kodigo.solid.controllers.AppointmentBookController;
 import com.kodigo.solid.controllers.PaymentEntityController;
 import com.kodigo.solid.services.auth.AuthServiceImplementation;
+import com.kodigo.solid.utils.menuMethods.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
@@ -26,26 +27,13 @@ public class MenuAdminEntity {
     private final AdminEntityController adminEntityController;
     private final PaymentEntityController paymentEntityController;
     private final AppointmentBookController appointmentBook;
-    private final AuthServiceImplementation auth;
+   private final AuthServiceImplementation auth;
     /////////////////////////////////
 
 
     public void viewMenuAdmin() {
         while (!exit) {
-
-            System.out.println("-----MENU ADMINISTRADOR------");
-            System.out.println("=============================");
-            System.out.println("-----GESTIÓN DE USUARIOS-----");
-            System.out.println(" 1 - Crear un nuevo usuario ");
-            System.out.println(" 2 - Modificar usuario ");
-            System.out.println(" 3 - Eliminar usuario ");
-            System.out.println("=============================");
-            System.out.println("-----GESTIÓN DE REPORTES-----");
-            System.out.println(" 4 - Reporte usuarios ");
-            System.out.println(" 5 - Reporte citas ");
-            System.out.println(" 6 - Reporte pagos ");
-            System.out.println(" 0 - Salir ");
-            System.out.print("Ingrese la opción que desea: ");
+            adminMenu.printAdminMenu();
             option = sc.nextLine();
 
             switch (option) {

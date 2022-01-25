@@ -1,10 +1,7 @@
 package com.kodigo.solid.registration;
+import lombok.Data;
 
-import lombok.*;
-
-
-@Setter
-@Getter
+@Data
 public class Registration {
     private String dui;
     private String name;

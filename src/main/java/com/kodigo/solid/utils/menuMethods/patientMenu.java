@@ -1,19 +1,15 @@
 package com.kodigo.solid.utils.menuMethods;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class patientMenu {
+
+    private patientMenu(){}
+
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     public static void printPatientMenu(){
-        System.out.println("------MENU PACIENTE------");
-        System.out.println("==============================");
-        System.out.println("1------GESTION DE CITAS------");
-        System.out.println("-Crear cita\n-Actualizar cita\n-Cancelar cita");
-        System.out.println("==============================");
-        System.out.println("2------GESTION DE PAGOS------");
-        System.out.println("-Historial de pago\n-Imprimir factura");
-        System.out.println("==============================");
-        System.out.println("4 - Agenda");
-        System.out.println("0 - Salir");
-        System.out.print("Ingrese la opción que desea: ");
+        logger.log(Level.INFO,"\n------MENÚ PACIENTE------\n==============================\n1------GESTIÓN DE CITAS------\n-Crear cita\n-Actualizar cita\n-Cancelar cita\n==============================\n2------GESTIÓN DE PAGOS------\n-Historial de pago\n-Imprimir factura\n==============================\n4 - Agenda\n0 - Salir\nIngrese la opción que desea: ");
     }
-
-
 }

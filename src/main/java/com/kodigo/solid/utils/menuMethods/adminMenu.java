@@ -1,23 +1,15 @@
 package com.kodigo.solid.utils.menuMethods;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class adminMenu {
 
+    private adminMenu() {}
+
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     public static void printAdminMenu() {
-        System.out.println("------MENU ADMINISTRADOR------");
-        System.out.println("==============================");
-        System.out.println("------GESTION DE USUARIOS------");
-        System.out.println(" 1 - Crear un nuevo usuario ");
-        System.out.println(" 2 - Modificar usuario ");
-        System.out.println(" 3 - Eliminar usuario ");
-        System.out.println("==============================");
-        System.out.println("------GESTION DE REPORTES------");
-        System.out.println(" 4 - Reporte usuarios ");
-        System.out.println(" 5 - Reporte citas ");
-        System.out.println(" 6 - Reporte pagos ");
-        System.out.println(" 0 - Salir ");
-        System.out.print("Ingrese la opción que desea: ");
+        logger.log(Level.INFO,"\n------MENÚ ADMINISTRADOR------\n==============================\n------GESTIÓN DE USUARIOS------\n 1 - Crear un nuevo usuario \n 2 - Modificar usuario \n 3 - Eliminar usuario \n==============================\n------GESTIÓN DE REPORTES------\n 4 - Reporte usuarios \n 5 - Reporte citas \n 6 - Reporte pagos \n 0 - Salir \nIngrese la opción que desea: \n");
     }
-
-
-
 }

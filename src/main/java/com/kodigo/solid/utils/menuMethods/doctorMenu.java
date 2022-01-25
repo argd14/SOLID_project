@@ -1,22 +1,15 @@
 package com.kodigo.solid.utils.menuMethods;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class doctorMenu {
+
+    private doctorMenu() {}
+
+    private static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     public static void printDoctorMenu(){
-        System.out.println("-----MENU DOCTOR----- ");
-        System.out.println("==============================");
-        System.out.println("-----GESTION HISTORIAL ----- ");
-        System.out.println(" 1 - Registrar consulta ");
-        System.out.println(" 2 - Ver consulta");
-        System.out.println("==============================");
-        System.out.println("-----GESTION DE RECETAS----- ");
-        System.out.println(" 3 - Prescribir receta");
-        System.out.println(" 4 - Consultar receta");
-        System.out.println(" 5 - Enviar receta por email");
-        System.out.println("==============================");
-        System.out.println("-----AGENDA----- ");
-        System.out.println(" 6 - Consultar agenda");
-        System.out.println(" 0 - Salir ");
-        System.out.println();
-        System.out.print(" Ingrese la opción que desea: ");
+        logger.log(Level.INFO, "\n-----MENÚ DOCTOR----- \n==============================\n-----GESTIÓN HISTORIAL ----- \n 1 - Registrar consulta \n 2 - Ver consulta\n==============================\n -----GESTIÓN DE RECETAS----- \n 3 - Prescribir receta\n 4 - Consultar receta\n 5 - Enviar receta por email\n==============================\n-----AGENDA----- \n 6 - Consultar agenda\n 0 - Salir \n Ingrese la opción que desea: ");
     }
 }
